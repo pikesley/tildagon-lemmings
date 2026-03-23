@@ -1,0 +1,5 @@
+{
+    "name": "Lemmings",
+    "path": "apps.lemmings.app",
+    "callable": "Lemmings"
+  }

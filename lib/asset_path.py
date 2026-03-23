@@ -1,0 +1,12 @@
+# https://tildagon.badge.emfcamp.org/tildagon-apps/reference/ctx/#adding-images
+import os
+
+apps = os.listdir("/apps")
+path = ""
+ASSET_PATH = "apps//"
+
+if "pikesley_tildagon_lemmings" in apps:
+    ASSET_PATH = "/apps/pikesley_tildagon_lemmings/"
+
+if "lemmings" in apps:
+    ASSET_PATH = "apps/lemmings/"
