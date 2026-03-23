@@ -24,8 +24,12 @@ class Lemmings(app.App):
         self.index = 0
 
         self.hue = 0.5
-        self.lemming = Lemming(
-            y=randint(-100, 100),
+        self.lemming = self.new_lemming()
+
+    def new_lemming(self):
+        """New little guy."""
+        return Lemming(
+            y=randint(0-conf["y-range"], conf["y-range"]),
             scale=randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
             flipped=choice([True, False]),
         )
@@ -38,11 +42,7 @@ class Lemmings(app.App):
         self.hue = (self.hue + conf["hue-increment"]) % 1
         self.light_leds()
         if self.lemming.done:
-            self.lemming = Lemming(
-                y=randint(-100, 100),
-                scale=randint(conf["scale"]["min"], conf["scale"]["max"]),
-                flipped=choice([True, False]),
-            )
+            self.lemming = self.new_lemming()
 
     def draw(self, ctx):
         """Draw."""

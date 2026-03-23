@@ -10,7 +10,7 @@ from .sprite_flipper import flip_sprite
 class Lemming:
     """A little guy."""
 
-    def __init__(self, y=-80, scale=5, distance=1.0, speed=1, flipped=False):
+    def __init__(self, y=-80, scale=5, speed=1, flipped=False):
         """Construct."""
         self.variety = "walker"
         self.flipped = flipped
@@ -21,7 +21,6 @@ class Lemming:
             self.x = 120 + (len(self.frames[0]) * self.scale)
 
         self.y = y
-        self.distance = distance
         self.speed = speed
 
     def load_frames(self):
@@ -46,8 +45,7 @@ class Lemming:
         """Are we off-screen?"""
         if self.flipped:
             return self.x < -120 - (len(self.frames[0]) * self.scale)
-        else:
-            return self.x > 120 + (len(self.frames[0]) * self.scale)
+        return self.x > 120
 
     def move(self):
         """Walk."""
