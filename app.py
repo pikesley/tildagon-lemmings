@@ -1,4 +1,4 @@
-from random import randint
+from random import choice, randint
 
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
@@ -26,7 +26,8 @@ class Lemmings(app.App):
         self.hue = 0.5
         self.lemming = Lemming(
             y=randint(-100, 100),
-            scale=randint(conf["scale"]["min"], conf["scale"]["max"]),
+            scale=randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
+            flipped=choice([True, False]),
         )
 
     def update(self, _):
@@ -38,7 +39,9 @@ class Lemmings(app.App):
         self.light_leds()
         if self.lemming.done:
             self.lemming = Lemming(
-                scale=randint(conf["scale"]["min"], conf["scale"]["max"])
+                y=randint(-100, 100),
+                scale=randint(conf["scale"]["min"], conf["scale"]["max"]),
+                flipped=choice([True, False]),
             )
 
     def draw(self, ctx):

@@ -8,7 +8,7 @@ class Shape:
         self,
         centre=(0, 0),
         colour=(255, 0, 0),
-        filled=True,  # noqa: FBT002
+        filled=True,
         opacity=0.7,
         rotation=0,
         size=10,

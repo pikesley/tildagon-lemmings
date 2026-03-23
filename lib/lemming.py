@@ -4,17 +4,22 @@ import os
 
 from ..common.shapes.square import Square
 from .asset_path import ASSET_PATH
+from .sprite_flipper import flip_sprite
 
 
 class Lemming:
     """A little guy."""
 
-    def __init__(self, y=-80, scale=5, distance=1.0, speed=1):
+    def __init__(self, y=-80, scale=5, distance=1.0, speed=1, flipped=False):
         """Construct."""
         self.variety = "walker"
+        self.flipped = flipped
         self.load_frames()
         self.scale = scale
         self.x = -120 - (len(self.frames[0]) * self.scale)
+        if self.flipped:
+            self.x = 120 + (len(self.frames[0]) * self.scale)
+
         self.y = y
         self.distance = distance
         self.speed = speed
@@ -32,17 +37,24 @@ class Lemming:
                     ).read()
                 ).decode()
             )
-
+            if self.flipped:
+                data = flip_sprite(data)
             self.frames.append(data)
 
     @property
     def done(self):
         """Are we off-screen?"""
-        return self.x > 130
+        if self.flipped:
+            return self.x < -120 - (len(self.frames[0]) * self.scale)
+        else:
+            return self.x > 120 + (len(self.frames[0]) * self.scale)
 
     def move(self):
         """Walk."""
-        self.x += self.speed * self.scale
+        if self.flipped:
+            self.x -= self.speed * self.scale
+        else:
+            self.x += self.speed * self.scale
 
     def animate(self):
         """Animate."""

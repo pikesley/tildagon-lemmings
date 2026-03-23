@@ -16,7 +16,8 @@ lint.ignore = [
   "D400",  # we'll end with a question mark if we want to
   "PTH208",
   "PTH123",
-  "SIM115"
+  "SIM115",
+  "FBT002"
 ]
 lint.select = [
   "A", # flake8-builtins
