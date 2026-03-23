@@ -6,7 +6,6 @@ from pathlib import Path
 
 from PIL import Image
 
-
 img = Image.open(sys.argv[1])
 lemming = sys.argv[1].split("/")[-1].split(".")[0]
 
@@ -27,7 +26,7 @@ for index, row in enumerate(batched(img.get_flattened_data(), 16)):
     fixed_row = []
     for item in row:
         if item[0:3] == (0, 0, 0):
-            item = (0, 0, 0, 0)
+            item = (0, 0, 0, 0)  # noqa: PLW2901
         fixed_row.append(item)
 
     sprites[index % sprite_count].append(fixed_row)

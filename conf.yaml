@@ -1,3 +1,12 @@
-pixel-size: 16
+scale:
+  min: 4
+  max: 16
+
 led-brightness: 0.5
 hue-increment: 0.001
+
+lemmings:
+  - name: walker
+    sequence: [1, 1, 1, 1, 1, 1, 1, 1]
+  - name: basher
+    sequence: [0, 0, 0, 0, 0, 0, 0, 1]
