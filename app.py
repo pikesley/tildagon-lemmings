@@ -1,17 +1,23 @@
-from random import choice, randint
-
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
 from tildagonos import tildagonos
 
 import app
-
+from random import choice, randint
 from .common.colour_tools import rgb_from_hue
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
-from .lib.lemming import Lemming
+from .lib.lemmings.basher import Basher
+from .lib.lemmings.faller import Faller
+from .lib.lemmings.walker import Walker
+
+characters = [
+    Faller,
+    Walker,
+    # Basher,
+]
 
 
 class Lemmings(app.App):
@@ -28,10 +34,17 @@ class Lemmings(app.App):
 
     def new_lemming(self):
         """New little guy."""
-        return Lemming(
-            y=randint(0-conf["y-range"], conf["y-range"]),
-            scale=randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
-            flipped=choice([True, False]),
+        offset = randint(0 - conf["y-range"], conf["y-range"])
+        scale = randint(conf["scale"]["min"], conf["scale"]["max"]) * 2
+        flipped = choice([True, False])
+
+        # scale = 8
+        # flipped = False
+
+        return choice(characters)(
+            scale=scale,
+            flipped=flipped,
+            offset=offset
         )
 
     def update(self, _):
@@ -61,6 +74,16 @@ class Lemmings(app.App):
         if self.button_states.get(BUTTON_TYPES["UP"]):
             self.button_states.clear()
             self.next_lemming()
+
+        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
+            self.button_states.clear()
+            self.lemming.animate()
+            print(self.lemming.frame_index)
+
+        if self.button_states.get(BUTTON_TYPES["LEFT"]):
+            self.button_states.clear()
+            self.lemming.move()
+            print(self.lemming.frame_index)
 
     def light_leds(self):
         """Light the lights."""

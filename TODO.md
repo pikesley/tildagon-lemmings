@@ -5,3 +5,6 @@ better `done` calculation
 - digger
 - climber
 - basher?
+- faller?
+
+simplify colours (hue?)

@@ -10,18 +10,16 @@ from .sprite_flipper import flip_sprite
 class Lemming:
     """A little guy."""
 
-    def __init__(self, y=-80, scale=5, speed=1, flipped=False):
+    def __init__(self, variety, scale=5, speed=1, flipped=False):
         """Construct."""
-        self.variety = "walker"
+        self.variety = variety
         self.flipped = flipped
         self.load_frames()
         self.scale = scale
-        self.x = -120 - (len(self.frames[0]) * self.scale)
-        if self.flipped:
-            self.x = 120 + (len(self.frames[0]) * self.scale)
 
-        self.y = y
         self.speed = speed
+
+        self.frame_index = 0
 
     def load_frames(self):
         """Load frames."""
@@ -40,29 +38,16 @@ class Lemming:
                 data = flip_sprite(data)
             self.frames.append(data)
 
-    @property
-    def done(self):
-        """Are we off-screen?"""
-        if self.flipped:
-            return self.x < -120 - (len(self.frames[0]) * self.scale)
-        return self.x > 120
-
-    def move(self):
-        """Walk."""
-        if self.flipped:
-            self.x -= self.speed * self.scale
-        else:
-            self.x += self.speed * self.scale
 
     def animate(self):
         """Animate."""
-        self.frames = self.frames[1:] + [self.frames[0]]
+        self.frame_index = (self.frame_index + 1) % len(self.frames)
 
     @property
     def pixels(self):
         """Draw."""
         pix = []
-        for i, row in enumerate(self.frames[0]):
+        for i, row in enumerate(self.frames[self.frame_index]):
             for j, item in enumerate(row):
                 pix.append(
                     Square(

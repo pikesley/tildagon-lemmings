@@ -1,36 +1,9 @@
 {
   "hue-increment": 0.001,
   "led-brightness": 0.5,
-  "lemmings": [
-    {
-      "name": "walker",
-      "sequence": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "name": "basher",
-      "sequence": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ]
-    }
-  ],
   "scale": {
     "max": 8,
     "min": 2
-  }
+  },
+  "y-range": 60
 }
