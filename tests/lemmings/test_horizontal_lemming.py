@@ -1,13 +1,9 @@
 from lib.lemmings.horizontal_lemming import HorizontalLemming
+from tests.helpers import test_defaults
 
 
 def test_y_limit():
     """Test."""
-    h_lem = HorizontalLemming(
-        "square",
-        scale=4,
-        asset_path="tests/fixtures/",
-        compressed_bitmaps=False,
-    )
+    h_lem = HorizontalLemming("square", test_defaults)
 
     assert h_lem.y_limit == 116

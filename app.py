@@ -34,14 +34,15 @@ class Lemmings(app.App):
 
     def new_lemming(self):
         """New little guy."""
-        offset = randint(0 - conf["y-range"], conf["y-range"])
-        scale = randint(conf["scale"]["min"], conf["scale"]["max"]) * 2
-        flipped = choice([True, False])
+        params = {
+            "scale": randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
+            "flipped": choice([True, False]),
+        }
 
-        # scale = 8
-        # flipped = False
+        lemming = choice(characters)(params)
+        lemming.randomise_offset()
 
-        return choice(characters)(scale=scale, flipped=flipped, offset=offset)
+        return lemming
 
     def update(self, _):
         """Update."""

@@ -7,33 +7,35 @@ try:
 except ImportError:
     from common.shapes.square import Square
 
-try:  # noqa: SIM105
+try:
     from .asset_path import ASSET_PATH
 except FileNotFoundError:
-    pass
+    ASSET_PATH = ""
 
 from .sprite_flipper import flip_sprite
+
+defaults = {
+    "scale": 4,
+    "speed": 1,
+    "flipped": False,
+    "asset-path": ASSET_PATH,
+    "compressed-bitmaps": True,
+}
 
 
 class Lemming:
     """A little guy."""
 
-    def __init__(  # noqa: PLR0913
-        self,
-        variety,
-        scale=5,
-        speed=1,
-        flipped=False,
-        asset_path=None,
-        compressed_bitmaps=True,
-    ):
+    def __init__(self, variety, params):
         """Construct."""
+        self.params = dict(defaults, **params)
         self.variety = variety
-        self.flipped = flipped
-        self.asset_path = asset_path or ASSET_PATH
-        self.compressed_bitmaps = compressed_bitmaps
-        self.scale = scale
-        self.speed = speed
+
+        self.flipped = self.params["flipped"]
+        self.asset_path = self.params["asset-path"]
+        self.compressed_bitmaps = self.params["compressed-bitmaps"]
+        self.scale = self.params["scale"]
+        self.speed = self.params["speed"]
 
         self.load_frames()
         self.frame_index = 0
