@@ -4,7 +4,10 @@ from lib.lemming import Lemming
 def test_lemming():
     """Test."""
     lem = Lemming(
-        "square", scale=4, asset_path="tests/fixtures/", compressed_bitmaps=False
+        "square",
+        scale=4,
+        asset_path="tests/fixtures/",
+        compressed_bitmaps=False,
     )
     assert lem.frames == [
         [
@@ -17,7 +20,10 @@ def test_lemming():
 def test_positioning():
     """Test."""
     lem = Lemming(
-        "square", scale=4, asset_path="tests/fixtures/", compressed_bitmaps=False
+        "square",
+        scale=4,
+        asset_path="tests/fixtures/",
+        compressed_bitmaps=False,
     )
 
     lem.x = 0
