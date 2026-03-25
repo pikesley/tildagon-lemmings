@@ -9,3 +9,5 @@ better `done` calculation
 
 simplify colours (hue?)
 centre sprites (in `pixels`)
+vary the colours?
+buffer per sprite, because e.g. the `walker` is narrower in all frames?
