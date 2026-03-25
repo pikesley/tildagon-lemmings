@@ -1,3 +1,4 @@
+from math import sqrt
 from random import randint
 
 from ..lemming import Lemming
@@ -12,20 +13,32 @@ class HorizontalLemming(Lemming):
 
         self.y = 0
         self.y_limit = 120 - ((self.height / 2) * self.scale)
+        self.x = self.calculate_start_x()
+        self.final_x = 0 - self.x
 
-        self.start_x = -120 - (self.width * self.scale)
+    def calculate_start_x(self):
+        """Starting x-position."""
+        limit = sqrt(120**2 - self.y**2)
+
+        position = -limit - (self.width * self.scale)
         if self.flipped:
-            self.start_x = 120 + (self.width * self.scale)
+            position = limit + (self.width * self.scale)
 
-        self.x = self.start_x
+        return round(position)
 
     @property
     def done(self):
         """Are we off-screen?"""
         if self.flipped:
-            return self.x < -120 - (len(self.frames[0]) * self.scale)
-        return self.x > 120
+            return self.x < self.final_x
+        return self.x > self.final_x
+
+    def set_y(self, value):
+        """Set our `y`."""
+        self.y = value
+        self.x = self.calculate_start_x()
+        self.final_x = 0 - self.x
 
     def randomise_offset(self):
         """Set y to something random."""
-        self.y = randint(int(-self.y_limit), int(self.y_limit))
+        self.set_y(randint(int(-self.y_limit), int(self.y_limit)))
