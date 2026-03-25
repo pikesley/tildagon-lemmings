@@ -63,7 +63,9 @@ class Lemming:
             if self.flipped:
                 data = flip_sprite(data)
             self.frames.append(data)
-            self.height = len(self.frames)
+
+        self.width = len(self.frames[0][0])
+        self.height = len(self.frames[0])
 
     def animate(self):
         """Animate."""

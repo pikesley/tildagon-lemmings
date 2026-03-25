@@ -7,3 +7,10 @@ def test_y_limit():
     h_lem = HorizontalLemming("square", test_defaults)
 
     assert h_lem.y_limit == 116
+
+
+def test_start_position():
+    """Test."""
+    h_lem = HorizontalLemming("square", test_defaults)
+
+    assert h_lem.start_x == -128

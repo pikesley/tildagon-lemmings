@@ -11,11 +11,13 @@ class HorizontalLemming(Lemming):
         super().__init__(variety, params)
 
         self.y = 0
-        self.y_limit = 120 - (((self.height / 2) * self.scale) + (self.scale / 2))
+        self.y_limit = 120 - ((self.height / 2) * self.scale)
 
-        self.x = -120 - (len(self.frames[0]) * self.scale)
+        self.start_x = -120 - (self.width * self.scale)
         if self.flipped:
-            self.x = 120 + (len(self.frames[0]) * self.scale)
+            self.start_x = 120 + (self.width * self.scale)
+
+        self.x = self.start_x
 
     @property
     def done(self):
