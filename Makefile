@@ -5,6 +5,10 @@ all: format test clean
 push: convert-conf
 	python -m mpremote cp -r * :/apps/${APP}/
 
+slim-deploy:
+	python -m mpremote cp -r lib :/apps/${APP}/
+	python -m mpremote cp app.py :/apps/${APP}/
+
 mkdir:
 	-python -m mpremote mkdir apps/${APP}
 

@@ -19,7 +19,6 @@ class VerticalLemming(Lemming):
 
         self.x = x
 
-
     @property
     def done(self):
         """Are we off-screen?"""

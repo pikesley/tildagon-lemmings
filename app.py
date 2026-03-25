@@ -1,20 +1,20 @@
+from random import choice, randint
+
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
 from tildagonos import tildagonos
 
 import app
-from random import choice, randint
+
 from .common.colour_tools import rgb_from_hue
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
-from .lib.lemmings.basher import Basher
-from .lib.lemmings.faller import Faller
 from .lib.lemmings.walker import Walker
 
 characters = [
-    Faller,
+    # Faller,
     Walker,
     # Basher,
 ]
@@ -41,11 +41,7 @@ class Lemmings(app.App):
         # scale = 8
         # flipped = False
 
-        return choice(characters)(
-            scale=scale,
-            flipped=flipped,
-            offset=offset
-        )
+        return choice(characters)(scale=scale, flipped=flipped, offset=offset)
 
     def update(self, _):
         """Update."""

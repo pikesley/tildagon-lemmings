@@ -8,3 +8,4 @@ better `done` calculation
 - faller?
 
 simplify colours (hue?)
+centre sprites (in `pixels`)
