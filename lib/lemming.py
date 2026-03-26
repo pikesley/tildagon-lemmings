@@ -38,6 +38,7 @@ class Lemming:
 
         self.load_frames()
         self.frame_index = 0
+        self.opacity = 1
 
     def load_frames(self):
         """Load frames."""
@@ -64,7 +65,7 @@ class Lemming:
         start_y = self.y - (self.height * self.scale / 2)
         for i, row in enumerate(self.frames[self.frame_index]):
             for j, item in enumerate(row):
-                opacity = 1
+                opacity = self.opacity
                 if item == "background":
                     opacity = 0
                 pix.append(
@@ -78,6 +79,10 @@ class Lemming:
                 )
 
         return pix
+
+    def __lt__(self, other):
+        """Make us sortable."""
+        return self.scale < other.scale
 
 
 class Pixel:
@@ -102,3 +107,7 @@ class Pixel:
         )
 
         ctx.fill()
+
+
+class Outfit:
+    """Lemming clothes."""

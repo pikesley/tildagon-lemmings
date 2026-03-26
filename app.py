@@ -8,6 +8,7 @@ from tildagonos import tildagonos
 import app
 
 from .common.colour_tools import rgb_from_hue
+from .common.map_value import map_value
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
@@ -30,7 +31,10 @@ class Lemmings(app.App):
         self.index = 0
 
         self.hue = 0.5
-        self.lemming = self.new_lemming()
+
+        self.lemming_count = conf["lemming-count"]
+
+        self.lemmings = [self.new_lemming() for i in range(self.lemming_count)]
 
     def new_lemming(self):
         """New little guy."""
@@ -41,25 +45,39 @@ class Lemmings(app.App):
 
         lemming = choice(characters)(params)
         lemming.randomise_offset()
+        lemming.opacity = map_value(
+            lemming.scale, conf["scale"]["min"], conf["scale"]["max"], 0.2, 1
+        )
 
         return lemming
 
     def update(self, _):
         """Update."""
         self.scan_buttons()
-        self.lemming.animate()
-        self.lemming.move()
+        for lemming in self.lemmings:
+            lemming.animate()
+            lemming.move()
+
         self.hue = (self.hue + conf["hue-increment"]) % 1
         self.light_leds()
-        if self.lemming.done:
-            self.lemming = self.new_lemming()
+
+        fresh_lemmings = []
+        for lemming in self.lemmings:
+            if not lemming.done:
+                fresh_lemmings.append(lemming)  # noqa: PERF401
+
+        for _ in range(self.lemming_count - len(fresh_lemmings)):
+            fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
+
+        self.lemmings = sorted(fresh_lemmings)
 
     def draw(self, ctx):
         """Draw."""
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
 
-        self.overlays.extend(self.lemming.pixels)
+        for lemming in self.lemmings:
+            self.overlays.extend(lemming.pixels)
         self.draw_overlays(ctx)
 
     def scan_buttons(self):

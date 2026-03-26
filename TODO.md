@@ -1,6 +1,3 @@
-`y` with scale, so they fit on the screen
-better `done` calculation
-
 - walker
 - digger
 - climber
@@ -8,6 +5,7 @@ better `done` calculation
 - faller?
 
 simplify colours (hue?)
-centre sprites (in `pixels`)
 vary the colours?
-buffer per sprite, because e.g. the `walker` is narrower in all frames?
+fade smaller ones - tie opacity to scale
+moonwalkers
+sort by size, draw small ones first

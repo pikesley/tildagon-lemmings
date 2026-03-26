@@ -1,9 +1,21 @@
 {
+  "colours": {
+    "blue": "0, 170, 255",
+    "cream": "255, 235, 223",
+    "green": "0, 179, 0",
+    "grey": "164, 164, 164",
+    "indigo": "95, 99, 255",
+    "magenta": "221, 0, 255",
+    "orange": "250, 175, 0",
+    "red": "255,0,0",
+    "white": "255,255,255",
+    "yellow": "246, 255, 0"
+  },
   "hue-increment": 0.001,
   "led-brightness": 0.5,
+  "lemming-count": 5,
   "scale": {
-    "max": 8,
-    "min": 1
-  },
-  "y-range": 60
+    "max": 10,
+    "min": 2
+  }
 }

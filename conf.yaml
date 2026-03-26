@@ -1,8 +1,20 @@
 scale:
-  min: 1
-  max: 8
+  min: 2
+  max: 10
 
 led-brightness: 0.5
 hue-increment: 0.001
 
-y-range: 60
+lemming-count: 5
+
+colours:
+  orange: 250, 175, 0 # make these 0.0-1.0
+  blue: 0, 170, 255
+  magenta: 221, 0, 255
+  white: 255,255,255
+  grey: 164, 164, 164
+  green: 0, 179, 0
+  indigo: 95, 99, 255
+  cream: 255, 235, 223
+  red: 255,0,0
+  yellow: 246, 255, 0
