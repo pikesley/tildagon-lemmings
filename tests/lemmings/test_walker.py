@@ -12,7 +12,7 @@ def test_positioning():
     """Test."""
     w = Walker(test_defaults)
     w.x = 0
-    assert w.pixels[0].centre[0] == (-20)
+    assert w.pixels[0].left == -12
 
 
 def test_larger_positioning():
@@ -24,4 +24,5 @@ def test_larger_positioning():
         }
     )
     w.x = 0
-    assert w.pixels[0].centre[0] == (-80)
+    assert w.pixels[0].top == -80
+    assert w.pixels[0].left == -48

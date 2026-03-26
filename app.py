@@ -39,11 +39,8 @@ class Lemmings(app.App):
             "flipped": choice([True, False]),
         }
 
-        params = {"scale": 16, "speed": 0}
-
         lemming = choice(characters)(params)
-        lemming.x = 0
-        # lemming.randomise_offset()
+        lemming.randomise_offset()
 
         return lemming
 

@@ -25,4 +25,5 @@ def test_positioning():
     lem.x = 0
     lem.y = 0
 
-    assert lem.pixels[0].centre == (-4, -4)
+    assert lem.pixels[0].top == -4
+    assert lem.pixels[0].left == -4

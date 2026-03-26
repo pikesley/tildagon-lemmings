@@ -1,11 +1,6 @@
 import json
 
 try:
-    from ..common.shapes.square import Square
-except ImportError:
-    from common.shapes.square import Square
-
-try:
     from .asset_path import ASSET_PATH
 except FileNotFoundError:
     ASSET_PATH = ""
@@ -65,23 +60,45 @@ class Lemming:
     def pixels(self):
         """Draw."""
         pix = []
-        start_x = self.x - ((self.width * self.scale) - self.scale)
+        start_x = self.x - (self.width * self.scale / 2)
         start_y = self.y - (self.height * self.scale / 2)
         for i, row in enumerate(self.frames[self.frame_index]):
             for j, item in enumerate(row):
                 opacity = 1
-                # if item == "background":
-                # opacity = 0
+                if item == "background":
+                    opacity = 0
                 pix.append(
-                    Square(
-                        centre=(
-                            start_x + (j * (self.scale)),
-                            start_y + (i * (self.scale)),
-                        ),
-                        colour=colours[item],
-                        size=self.scale / 2,
-                        opacity=opacity,
+                    Pixel(
+                        start_x + (j * self.scale),
+                        start_y + (i * self.scale),
+                        self.scale,
+                        colours[item],
+                        opacity,
                     )
                 )
 
         return pix
+
+
+class Pixel:
+    """A square."""
+
+    def __init__(self, left, top, size, colour, opacity):
+        """Construct."""
+        self.left = left
+        self.top = top
+        self.size = size
+        self.colour = list(colour) + [opacity]
+
+    def draw(self, ctx):
+        """Draw."""
+        ctx.rgba(*self.colour)
+
+        ctx.rectangle(
+            self.left,
+            self.top,
+            self.size,
+            self.size,
+        )
+
+        ctx.fill()
