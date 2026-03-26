@@ -2,8 +2,12 @@ APP = $(shell basename $$(pwd))
 
 all: format test clean
 
-push: convert-conf
-	python -m mpremote cp -r * :/apps/${APP}/
+push: convert-conf slim-deploy
+	python -m mpremote cp -r bitmaps :/apps/${APP}/
+	python -m mpremote cp -r common :/apps/${APP}/
+	python -m mpremote cp -r conf.json :/apps/${APP}/
+	python -m mpremote cp -r metadata.json :/apps/${APP}/
+	python -m mpremote cp -r tildagon.toml :/apps/${APP}/
 
 slim-deploy:
 	python -m mpremote cp -r lib :/apps/${APP}/

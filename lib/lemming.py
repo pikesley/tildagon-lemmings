@@ -1,6 +1,4 @@
-import gzip
 import json
-import os
 
 try:
     from ..common.shapes.square import Square
@@ -12,7 +10,6 @@ try:
 except FileNotFoundError:
     ASSET_PATH = ""
 
-from .sprite_flipper import flip_sprite
 
 defaults = {
     "scale": 4,
@@ -20,6 +17,13 @@ defaults = {
     "flipped": False,
     "asset-path": ASSET_PATH,
     "compressed-bitmaps": True,
+}
+
+colours = {
+    "background": [1, 0, 1],
+    "hair": [0.0, 0.7019607843137254, 0.0],
+    "flesh": [1.0, 0.9215686274509803, 0.8745098039215686],
+    "clothing": [0.37254901960784315, 0.38823529411764707, 1.0],
 }
 
 
@@ -42,27 +46,13 @@ class Lemming:
 
     def load_frames(self):
         """Load frames."""
-        self.frames = []
-        self.width = len(os.listdir(self.asset_path + f"bitmaps/{self.variety}"))
+        source = self.variety
+        if self.flipped:
+            source = f"{source}-flipped"
 
-        for i in range(self.width):
-            if self.compressed_bitmaps:
-                data = json.loads(
-                    gzip.decompress(
-                        open(
-                            self.asset_path + f"bitmaps/{self.variety}/{i}.json.gz",
-                            "rb",
-                        ).read()
-                    ).decode()
-                )
-            else:
-                data = json.loads(
-                    open(self.asset_path + f"bitmaps/{self.variety}/{i}.json").read()
-                )
-
-            if self.flipped:
-                data = flip_sprite(data)
-            self.frames.append(data)
+        self.frames = json.loads(
+            open(self.asset_path + f"bitmaps/{source}.json").read()
+        )
 
         self.width = len(self.frames[0][0])
         self.height = len(self.frames[0])
@@ -75,20 +65,22 @@ class Lemming:
     def pixels(self):
         """Draw."""
         pix = []
-        start_x = self.x - (self.width * self.scale / 2)
+        start_x = self.x - ((self.width * self.scale) - self.scale)
         start_y = self.y - (self.height * self.scale / 2)
         for i, row in enumerate(self.frames[self.frame_index]):
             for j, item in enumerate(row):
+                opacity = 1
+                # if item == "background":
+                # opacity = 0
                 pix.append(
                     Square(
                         centre=(
                             start_x + (j * (self.scale)),
                             start_y + (i * (self.scale)),
                         ),
-                        # colour=[x / 255 for x in item[0:3]],
-                        colour=item[0:3],
+                        colour=colours[item],
                         size=self.scale / 2,
-                        opacity=item[-1],
+                        opacity=opacity,
                     )
                 )
 

@@ -8,9 +8,13 @@ def test_lemming():
     lem = Lemming("square", test_defaults)
     assert lem.frames == [
         [
-            [[1.0, 0.0, 0.0, 1.0], [1.0, 0.0, 0.0, 1.0]],
-            [[1.0, 0.0, 0.0, 1.0], [1.0, 0.0, 0.0, 1.0]],
-        ]
+            ["hair", "background"],
+            ["hair", "background"],
+        ],
+        [
+            ["hair", "background"],
+            ["hair", "background"],
+        ],
     ]
 
 

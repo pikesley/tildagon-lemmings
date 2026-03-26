@@ -25,9 +25,7 @@ for i in range(sprite_count):
 for index, row in enumerate(batched(img.get_flattened_data(), 16)):
     fixed_row = []
     for item in row:
-        if item[0:3] == (0, 0, 0):
-            item = (0, 0, 0, 0)  # noqa: PLW2901
-        fixed_row.append([x / 255 for x in item])
+        fixed_row.append(item[0:3])  # noqa: PERF401
 
     sprites[index % sprite_count].append(fixed_row)
 
