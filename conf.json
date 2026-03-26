@@ -51,7 +51,7 @@
   },
   "hue-increment": 0.005,
   "led-brightness": 0.5,
-  "lemming-count": 4,
+  "lemming-count": 3,
   "moonwalk-threshold": 0.95,
   "scale": {
     "max": 6,
