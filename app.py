@@ -1,5 +1,7 @@
+from math import atan2
 from random import choice, randint
 
+import imu
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
@@ -36,6 +38,8 @@ class Lemmings(app.App):
 
         self.lemmings = [self.new_lemming() for i in range(self.lemming_count)]
 
+        self.rotation_offset = 0
+
     def new_lemming(self):
         """New little guy."""
         params = {
@@ -53,6 +57,10 @@ class Lemmings(app.App):
 
     def update(self, _):
         """Update."""
+        acc = imu.acc_read()
+        weighting = min(1.0, int(abs(10 - acc[2])) / 9)
+        self.rotation_offset = (atan2(acc[1], acc[0])) * weighting
+
         self.scan_buttons()
         for lemming in self.lemmings:
             lemming.animate()
@@ -73,6 +81,8 @@ class Lemmings(app.App):
 
     def draw(self, ctx):
         """Draw."""
+        ctx.rotate(-self.rotation_offset)
+
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
 

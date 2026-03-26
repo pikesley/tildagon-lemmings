@@ -1,16 +1,22 @@
-import colorsys
+from pathlib import Path
+
+import yaml
 
 colours = {
-    "background": [1, 0, 1],
-    "hair": [0.0, 0.7019607843137254, 0.0],
-    "flesh": [1.0, 0.9215686274509803, 0.8745098039215686],
-    "clothing": [0.37254901960784315, 0.38823529411764707, 1.0],
+    "magenta": [221, 0, 255],
+    "yellow": [246, 255, 0],
+    "red": [255, 0, 0],
+    "cream": [255, 235, 223],
+    "grey": [164, 164, 164],
+    "green": [0, 179, 0],
+    "white": [255, 255, 255],
+    "orange": [250, 175, 0],
+    "blue": [0, 170, 255],
+    "indigo": [95, 99, 255],
 }
 
-hsv_colours = {}
-
+fixed = {}
 for key, rgb in colours.items():
-    hsv = colorsys.rgb_to_hsv(*[x * 255 for x in rgb])
-    hsv_colours[key] = {"hue": hsv[0], "value": hsv[2]}
+    fixed[key] = [x / 255 for x in rgb]
 
-print(hsv_colours)
+Path("foo.yaml").write_text(yaml.dump(fixed))

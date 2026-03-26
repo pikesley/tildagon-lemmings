@@ -1,21 +1,27 @@
 import json
+from random import choice
 
 try:
     from .asset_path import ASSET_PATH
 except FileNotFoundError:
     ASSET_PATH = ""
+try:
+    from .conf import conf
+except FileNotFoundError:
+    import json
+    from pathlib import Path
 
+    conf = json.loads(Path("conf.json").read_text())
 
 defaults = {
     "scale": 4,
     "speed": 1,
     "flipped": False,
     "asset-path": ASSET_PATH,
-    "compressed-bitmaps": True,
 }
 
 colours = {
-    "background": [1, 0, 1],
+    "background": [0, 0, 0],
     "hair": [0.0, 0.7019607843137254, 0.0],
     "flesh": [1.0, 0.9215686274509803, 0.8745098039215686],
     "clothing": [0.37254901960784315, 0.38823529411764707, 1.0],
@@ -32,13 +38,14 @@ class Lemming:
 
         self.flipped = self.params["flipped"]
         self.asset_path = self.params["asset-path"]
-        self.compressed_bitmaps = self.params["compressed-bitmaps"]
         self.scale = self.params["scale"]
         self.speed = self.params["speed"]
 
         self.load_frames()
         self.frame_index = 0
         self.opacity = 1
+
+        self.outfit = Outfit()
 
     def load_frames(self):
         """Load frames."""
@@ -73,7 +80,7 @@ class Lemming:
                         start_x + (j * self.scale),
                         start_y + (i * self.scale),
                         self.scale,
-                        colours[item],
+                        self.outfit[item],
                         opacity,
                     )
                 )
@@ -111,3 +118,16 @@ class Pixel:
 
 class Outfit:
     """Lemming clothes."""
+
+    def __init__(self):
+        """Construct."""
+        self.colours = list(conf["colours"].values())
+        self.keys = ["hair", "clothing"]
+
+        self.data = dict(colours)
+        for key in self.keys:
+            self.data[key] = choice(self.colours)
+
+    def __getitem__(self, key):
+        """`foo[key]`."""
+        return self.data[key]

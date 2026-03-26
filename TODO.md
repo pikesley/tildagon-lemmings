@@ -5,7 +5,7 @@
 - faller?
 
 simplify colours (hue?)
-vary the colours?
-fade smaller ones - tie opacity to scale
-moonwalkers
-sort by size, draw small ones first
+- rotating colours (hue), with opposite for hair and clothes
+moonwalkers - we can test for this
+ensure range of sizes?
+background image?
