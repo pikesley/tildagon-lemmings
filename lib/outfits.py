@@ -21,6 +21,12 @@ class Outfit:
         """`foo[key]`."""
         return self.data[key]
 
+    def get(self, key, default):
+        """`foo.get(key)`."""
+        if key in self.data:
+            return self.data[key]
+        return default
+
 
 class RandomOutfit(Outfit):
     """Lemming clothes."""
@@ -41,7 +47,6 @@ class RotatingOutfit(Outfit):
     def __init__(self, hue):
         """Construct."""
         self.data = {
-            "background": [0, 0, 0],
             "flesh": conf["default-colours"]["flesh"],
             "hair": rgb_from_hue(hue),
             "clothing": rgb_from_hue(hue + 1 / 3),
@@ -54,7 +59,6 @@ class TriadicOutfit(Outfit):
     def __init__(self, hue):
         """Construct."""
         self.data = {
-            "background": [0, 0, 0],
             "flesh": rgb_from_hue(hue),
             "hair": rgb_from_hue(hue + 1 / 3),
             "clothing": rgb_from_hue(hue + 2 / 3),

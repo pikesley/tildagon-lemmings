@@ -71,6 +71,7 @@ class Lemming:
         for i, row in enumerate(self.frames[self.frame_index]):
             for j, item in enumerate(row):
                 opacity = self.opacity
+                colour = self.outfit.get(item, (0, 0, 0))
                 if item == "background":
                     opacity = 0
                 pix.append(
@@ -78,7 +79,7 @@ class Lemming:
                         start_x + (j * self.scale),
                         start_y + (i * self.scale),
                         self.scale,
-                        self.outfit[item],
+                        colour,
                         opacity,
                     )
                 )

@@ -116,7 +116,7 @@ class Lemmings(app.App):
         colour = rgb_from_hue(self.hue)
         for i in range(18):
             if i > 11:
-                colour = rgb_from_hue(self.hue + 1/3)
+                colour = rgb_from_hue(self.hue + 1 / 3)
             tildagonos.leds[i + 1] = [
                 gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in colour
             ]

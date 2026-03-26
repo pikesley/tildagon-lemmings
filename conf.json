@@ -32,11 +32,6 @@
     ]
   },
   "default-colours": {
-    "background": [
-      0,
-      0,
-      0
-    ],
     "clothing": [
       0.37254901960784315,
       0.38823529411764707,
@@ -53,7 +48,7 @@
       0.0
     ]
   },
-  "hue-increment": 0.001,
+  "hue-increment": 0.005,
   "led-brightness": 0.5,
   "lemming-count": 4,
   "scale": {
