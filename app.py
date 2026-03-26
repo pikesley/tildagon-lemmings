@@ -32,7 +32,7 @@ class Lemmings(app.App):
         self.button_states = Buttons(self)
         self.index = 0
 
-        self.hue = 0.5
+        self.hue = 1 / 3
 
         self.lemming_count = conf["lemming-count"]
 
@@ -45,6 +45,7 @@ class Lemmings(app.App):
         params = {
             "scale": randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
             "flipped": choice([True, False]),
+            "hue": self.hue,
         }
 
         lemming = choice(characters)(params)
@@ -112,10 +113,10 @@ class Lemmings(app.App):
 
     def light_leds(self):
         """Light the lights."""
-        colour = rgb_from_hue(self.hue + 0.5)
+        colour = rgb_from_hue(self.hue)
         for i in range(18):
             if i > 11:
-                colour = rgb_from_hue(self.hue)
+                colour = rgb_from_hue(self.hue + 1/3)
             tildagonos.leds[i + 1] = [
                 gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in colour
             ]
