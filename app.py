@@ -1,5 +1,5 @@
 from math import atan2
-from random import choice, randint
+from random import choice, randint, random
 
 import imu
 from events.input import BUTTON_TYPES, Buttons
@@ -35,7 +35,6 @@ class Lemmings(app.App):
         self.hue = 1 / 3
 
         self.lemming_count = conf["lemming-count"]
-
         self.lemmings = [self.new_lemming() for i in range(self.lemming_count)]
 
         self.rotation_offset = 0
@@ -47,6 +46,9 @@ class Lemmings(app.App):
             "flipped": choice([True, False]),
             "hue": self.hue,
         }
+        if random() > conf["moonwalk-threshold"]:
+            params["moonwalker"] = True
+            params["hue"] = self.hue + 1 / 3
 
         lemming = choice(characters)(params)
         lemming.randomise_offset()

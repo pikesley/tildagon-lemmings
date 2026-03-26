@@ -1,5 +1,13 @@
 from math import floor
 
+try:
+    from ..lib.conf import conf
+except ImportError:
+    import json
+    from pathlib import Path
+
+    conf = json.loads(Path("conf.json").read_text())
+
 
 def _get_segments():
     """Get the segments."""
@@ -36,7 +44,10 @@ def _rgb_from_degrees(degrees):
     if sector % 2 == 1:
         offset = 1 - offset
 
-    return [segment.get(x, offset) for x in ["red", "green", "blue"]]
+    return [
+        segment.get(x, offset) * conf["colour-value-factor"]
+        for x in ["red", "green", "blue"]
+    ]
 
 
 def rgb_from_hue(decimal):

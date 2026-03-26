@@ -1,4 +1,5 @@
 {
+  "colour-value-factor": 0.8,
   "colours": {
     "blue": [
       0.3137254901960784,
@@ -51,6 +52,7 @@
   "hue-increment": 0.005,
   "led-brightness": 0.5,
   "lemming-count": 4,
+  "moonwalk-threshold": 0.95,
   "scale": {
     "max": 6,
     "min": 2

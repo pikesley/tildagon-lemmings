@@ -21,6 +21,7 @@ defaults = {
     "speed": 1,
     "flipped": False,
     "asset-path": ASSET_PATH,
+    "moonwalker": False,
 }
 
 
@@ -36,6 +37,7 @@ class Lemming:
         self.asset_path = self.params["asset-path"]
         self.scale = self.params["scale"]
         self.speed = self.params["speed"]
+        self.moonwalker = self.params["moonwalker"]
 
         self.load_frames()
         self.frame_index = 0
@@ -48,8 +50,10 @@ class Lemming:
     def load_frames(self):
         """Load frames."""
         source = self.variety
-        if self.flipped:
-            source = f"{source}-flipped"
+
+        # XOR these two
+        if self.flipped != self.moonwalker:
+            source = f"{self.variety}-flipped"
 
         self.frames = json.loads(
             open(self.asset_path + f"bitmaps/{source}.json").read()
