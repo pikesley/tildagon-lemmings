@@ -5,7 +5,8 @@ from lib.lemming import Lemming
 
 def test_lemming():
     """Test."""
-    lem = Lemming("square", test_defaults)
+    lem = Lemming(test_defaults)
+    lem.name = "square"
     assert lem.frames == [
         [
             ["hr", "bg"],
@@ -20,8 +21,8 @@ def test_lemming():
 
 def test_positioning():
     """Test."""
-    lem = Lemming("square", test_defaults)
-
+    lem = Lemming(test_defaults)
+    lem.name = "square"
     lem.x = 0
     lem.y = 0
 

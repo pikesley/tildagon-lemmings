@@ -7,9 +7,9 @@ from ..lemming import Lemming
 class VerticalLemming(Lemming):
     """An up-down lemming."""
 
-    def __init__(self, variety, params):
+    def __init__(self, params):
         """Construct."""
-        super().__init__(variety, params)
+        super().__init__(params)
 
         self.x = 0
         self.x_limit = 120 - ((self.width / 2) * self.scale)

@@ -23,11 +23,13 @@ defaults = dict(conf["lemming-defaults"], **{"asset-path": ASSET_PATH})
 class Lemming:
     """A little guy."""
 
-    def __init__(self, variety, params):
+    def __init__(self, params):
         """Construct."""
         self.conf = conf
         self.params = dict(defaults, **params)
-        self.variety = variety
+
+        if "name" in params:
+            self.name = params["name"]
 
         self.flipped = self.params["flipped"]
         self.asset_path = self.params["asset-path"]
@@ -48,14 +50,14 @@ class Lemming:
 
     def load_frames(self):
         """Load frames."""
-        source = self.variety
+        source = "regular"
 
         # XOR these two
         if self.flipped != self.moonwalker:
-            source = f"{self.variety}-flipped"
+            source = "inverted"
 
         self.frames = json.loads(
-            open(self.asset_path + f"bitmaps/{source}.json").read()
+            open(self.asset_path + f"bitmaps/{self.name}/{source}.json").read()
         )
 
         self.width = len(self.frames[0][0])

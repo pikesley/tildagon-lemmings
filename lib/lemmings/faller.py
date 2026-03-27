@@ -7,4 +7,4 @@ class Faller(VerticalLemming):
     def __init__(self, params=None):
         """Construct."""
         self.name = "faller"
-        super().__init__(self.name, params or {})
+        super().__init__(params or {})

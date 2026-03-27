@@ -7,4 +7,4 @@ class Walker(HorizontalLemming):
     def __init__(self, params=None):
         """Construct."""
         self.name = "walker"
-        super().__init__(self.name, params or {})
+        super().__init__(params or {})
