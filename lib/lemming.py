@@ -16,14 +16,8 @@ except FileNotFoundError:
 
     conf = json.loads(Path("conf.json").read_text())
 
-defaults = {  # TODO move this to `conf.yaml`?
-    "scale": 4,
-    "speed": 1,
-    "flipped": False,
-    "asset-path": ASSET_PATH,
-    "moonwalker": False,
-    "randomised-offset": False,
-}
+
+defaults = dict(conf["lemming-defaults"], **{"asset-path": ASSET_PATH})
 
 
 class Lemming:
