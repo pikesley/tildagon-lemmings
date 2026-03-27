@@ -14,8 +14,8 @@ from .common.map_value import map_value
 from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
-from .lib.lemmings.walker import Walker
 from .lib.lemmings.faller import Faller
+from .lib.lemmings.walker import Walker
 
 characters = [
     Faller,
@@ -52,7 +52,7 @@ class Lemmings(app.App):
             params["moonwalker"] = True
             params["hue"] = self.hue + 1 / 3
 
-        lemming_class =  Walker
+        lemming_class = Walker
         if random() > conf["faller-threshold"]:
             lemming_class = Faller
 

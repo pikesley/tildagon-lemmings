@@ -80,7 +80,7 @@ class Lemming:
             for j, item in enumerate(row):
                 opacity = self.opacity
                 colour = self.outfit.get(item, (0, 0, 0))
-                if item == "background":
+                if item == "bg":
                     opacity = 0
                 pix.append(
                     Pixel(

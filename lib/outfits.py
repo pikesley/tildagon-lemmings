@@ -34,7 +34,7 @@ class RandomOutfit(Outfit):
     def __init__(self, _):
         """Construct."""
         self.colours = list(conf["colours"].values())
-        self.keys = ["hair", "clothing"]
+        self.keys = ["hr", "cl"]
 
         self.data = dict(conf["default-colours"])
         for key in self.keys:
@@ -47,9 +47,9 @@ class RotatingOutfit(Outfit):
     def __init__(self, hue):
         """Construct."""
         self.data = {
-            "flesh": conf["default-colours"]["flesh"],
-            "hair": rgb_from_hue(hue),
-            "clothing": rgb_from_hue(hue + 1 / 3),
+            "sk": conf["default-colours"]["sk"],
+            "hr": rgb_from_hue(hue),
+            "cl": rgb_from_hue(hue + 1 / 3),
         }
 
 
@@ -59,7 +59,7 @@ class TriadicOutfit(Outfit):
     def __init__(self, hue):
         """Construct."""
         self.data = {
-            "flesh": rgb_from_hue(hue),
-            "hair": rgb_from_hue(hue + 1 / 3),
-            "clothing": rgb_from_hue(hue + 2 / 3),
+            "sk": rgb_from_hue(hue),
+            "hr": rgb_from_hue(hue + 1 / 3),
+            "cl": rgb_from_hue(hue + 2 / 3),
         }

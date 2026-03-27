@@ -2,10 +2,10 @@ import json
 from pathlib import Path
 
 lookups = {
-    "[0, 0, 0]": "background",
-    "[0, 179, 0]": "hair",
-    "[255, 235, 223]": "flesh",
-    "[95, 99, 255]": "clothing",
+    "[0, 0, 0]": "bg",
+    "[0, 179, 0]": "hr",
+    "[255, 235, 223]": "sk",
+    "[95, 99, 255]": "cl",
 }
 
 data = json.loads(Path("bitmaps/faller.json").read_text())

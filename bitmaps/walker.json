@@ -1,294 +1,98 @@
 [
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "hair", "hair", "hair", "hair", "background"],
-    ["background", "hair", "hair", "flesh", "background", "background"],
-    ["background", "background", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["background", "flesh", "clothing", "clothing", "background", "background"],
-    ["background", "background", "flesh", "flesh", "background", "background"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "hr", "hr", "hr", "hr", "bg"],
+    ["bg", "hr", "hr", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "bg", "bg"]
   ],
   [
-    ["background", "background", "hair", "background", "hair", "background"],
-    ["background", "hair", "hair", "hair", "background", "background"],
-    ["background", "hair", "hair", "flesh", "background", "background"],
-    ["background", "background", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["background", "flesh", "clothing", "clothing", "background", "background"],
-    ["background", "flesh", "clothing", "clothing", "background", "flesh"],
-    ["background", "background", "clothing", "clothing", "background", "flesh"],
-    ["background", "clothing", "clothing", "background", "flesh", "background"],
-    ["background", "flesh", "flesh", "background", "background", "background"]
+    ["bg", "bg", "hr", "bg", "hr", "bg"],
+    ["bg", "hr", "hr", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "sk"],
+    ["bg", "bg", "cl", "cl", "bg", "sk"],
+    ["bg", "cl", "cl", "bg", "sk", "bg"],
+    ["bg", "sk", "sk", "bg", "bg", "bg"]
   ],
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "hair", "background", "hair", "background", "background"],
-    ["background", "hair", "hair", "hair", "background", "background"],
-    ["background", "background", "hair", "flesh", "background", "background"],
-    ["background", "background", "flesh", "flesh", "flesh", "background"],
-    ["background", "flesh", "flesh", "clothing", "background", "background"],
-    ["background", "flesh", "clothing", "clothing", "background", "background"],
-    ["flesh", "flesh", "clothing", "clothing", "clothing", "background"],
-    [
-      "background",
-      "clothing",
-      "clothing",
-      "clothing",
-      "clothing",
-      "background"
-    ],
-    ["flesh", "flesh", "background", "background", "flesh", "flesh"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "hr", "bg", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "hr", "bg", "bg"],
+    ["bg", "bg", "hr", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "sk", "bg"],
+    ["bg", "sk", "sk", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "bg"],
+    ["sk", "sk", "cl", "cl", "cl", "bg"],
+    ["bg", "cl", "cl", "cl", "cl", "bg"],
+    ["sk", "sk", "bg", "bg", "sk", "sk"]
   ],
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "background", "hair", "hair", "background", "background"],
-    ["background", "hair", "hair", "flesh", "hair", "background"],
-    ["background", "hair", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["background", "flesh", "clothing", "clothing", "background", "background"],
-    [
-      "background",
-      "background",
-      "clothing",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["flesh", "clothing", "clothing", "clothing", "clothing", "background"],
-    ["flesh", "background", "background", "flesh", "flesh", "background"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "bg", "hr", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "sk", "hr", "bg"],
+    ["bg", "hr", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "cl", "bg", "bg"],
+    ["sk", "cl", "cl", "cl", "cl", "bg"],
+    ["sk", "bg", "bg", "sk", "sk", "bg"]
   ],
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "hair", "hair", "hair", "hair", "background"],
-    ["background", "hair", "hair", "flesh", "background", "background"],
-    ["background", "hair", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "flesh",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["background", "flesh", "clothing", "clothing", "background", "background"],
-    ["background", "background", "flesh", "flesh", "background", "background"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "hr", "hr", "hr", "hr", "bg"],
+    ["bg", "hr", "hr", "sk", "bg", "bg"],
+    ["bg", "hr", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "cl", "bg", "bg"],
+    ["bg", "sk", "cl", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "bg", "bg"]
   ],
   [
-    ["background", "background", "hair", "background", "hair", "background"],
-    ["background", "hair", "hair", "hair", "background", "background"],
-    ["background", "hair", "hair", "flesh", "background", "background"],
-    ["background", "background", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "flesh",
-      "background",
-      "background"
-    ],
-    ["background", "background", "clothing", "flesh", "background", "flesh"],
-    ["background", "background", "clothing", "clothing", "background", "flesh"],
-    ["background", "clothing", "clothing", "background", "flesh", "background"],
-    ["background", "flesh", "flesh", "background", "background", "background"]
+    ["bg", "bg", "hr", "bg", "hr", "bg"],
+    ["bg", "hr", "hr", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "sk"],
+    ["bg", "bg", "cl", "cl", "bg", "sk"],
+    ["bg", "cl", "cl", "bg", "sk", "bg"],
+    ["bg", "sk", "sk", "bg", "bg", "bg"]
   ],
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "hair", "background", "hair", "background", "background"],
-    ["background", "hair", "hair", "hair", "background", "background"],
-    ["background", "background", "hair", "flesh", "background", "background"],
-    ["background", "background", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "clothing",
-      "flesh",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "flesh",
-      "background",
-      "background"
-    ],
-    ["background", "background", "clothing", "clothing", "flesh", "background"],
-    [
-      "background",
-      "clothing",
-      "clothing",
-      "clothing",
-      "clothing",
-      "background"
-    ],
-    ["flesh", "flesh", "background", "background", "flesh", "flesh"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "hr", "bg", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "hr", "bg", "bg"],
+    ["bg", "bg", "hr", "sk", "bg", "bg"],
+    ["bg", "bg", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "bg"],
+    ["bg", "bg", "cl", "cl", "sk", "bg"],
+    ["bg", "cl", "cl", "cl", "cl", "bg"],
+    ["sk", "sk", "bg", "bg", "sk", "sk"]
   ],
   [
-    [
-      "background",
-      "background",
-      "background",
-      "background",
-      "background",
-      "background"
-    ],
-    ["background", "background", "hair", "hair", "background", "background"],
-    ["background", "hair", "hair", "flesh", "hair", "background"],
-    ["background", "hair", "flesh", "flesh", "flesh", "background"],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "flesh",
-      "clothing",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "flesh",
-      "background",
-      "background"
-    ],
-    [
-      "background",
-      "background",
-      "clothing",
-      "clothing",
-      "background",
-      "background"
-    ],
-    ["flesh", "clothing", "clothing", "clothing", "clothing", "background"],
-    ["flesh", "background", "background", "flesh", "flesh", "background"]
+    ["bg", "bg", "bg", "bg", "bg", "bg"],
+    ["bg", "bg", "hr", "hr", "bg", "bg"],
+    ["bg", "hr", "hr", "sk", "hr", "bg"],
+    ["bg", "hr", "sk", "sk", "sk", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "sk", "cl", "bg", "bg"],
+    ["bg", "bg", "cl", "sk", "bg", "bg"],
+    ["bg", "bg", "cl", "cl", "bg", "bg"],
+    ["sk", "cl", "cl", "cl", "cl", "bg"],
+    ["sk", "bg", "bg", "sk", "sk", "bg"]
   ]
 ]
