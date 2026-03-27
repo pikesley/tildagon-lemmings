@@ -37,7 +37,6 @@ class Lemmings(app.App):
 
         self.rotation_offset = 0
 
-
     def update(self, _):
         """Update."""
         acc = imu.acc_read()
@@ -45,24 +44,13 @@ class Lemmings(app.App):
         self.rotation_offset = (atan2(acc[1], acc[0])) * weighting
 
         self.scan_buttons()
-        for lemming in self.colony.lemmings:
-            lemming.animate()
-            lemming.move()
 
         self.hue = (self.hue + conf["hue-increment"]) % 1
         self.light_leds()
 
         self.colony.hue = self.hue
-
-        fresh_lemmings = []
-        for lemming in self.colony.lemmings:
-            if not lemming.done:
-                fresh_lemmings.append(lemming)  # noqa: PERF401
-
-        for _ in range(self.colony.count - len(fresh_lemmings)):
-            fresh_lemmings.append(self.colony.new_lemming())  # noqa: PERF401
-
-        self.colony.lemmings = sorted(fresh_lemmings)
+        self.colony.mobilise()
+        self.colony.maintain()
 
     def draw(self, ctx):
         """Draw."""

@@ -38,3 +38,21 @@ class Colony:
         )
 
         return lemming
+
+    def mobilise(self):
+        """Move our lemmings."""
+        for lemming in self.lemmings:
+            lemming.animate()
+            lemming.move()
+
+    def maintain(self):
+        """Ensure we have a full contingent."""
+        fresh_lemmings = []
+        for lemming in self.lemmings:
+            if not lemming.done:
+                fresh_lemmings.append(lemming)  # noqa: PERF401
+
+        for _ in range(self.count - len(fresh_lemmings)):
+            fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
+
+        self.lemmings = sorted(fresh_lemmings)
