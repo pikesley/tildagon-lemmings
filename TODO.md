@@ -4,8 +4,6 @@
 - basher?
 - faller?
 
-ensure range of sizes?
-- LemmingSet or something, maintain 3 lemmings, enforce size and offet separation
-background image?
+ensure at most one freak in the colony
 remove source_images from repo
 optimise bitmaps (shorter names, compress files?)

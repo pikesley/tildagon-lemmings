@@ -1,6 +1,3 @@
-from .asset_path import ASSET_PATH
-
-
 class Background:
     """Background."""
 

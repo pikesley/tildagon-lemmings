@@ -1,4 +1,4 @@
-from random import choice, randint, random
+from random import choice, random
 
 try:
     from ..common.map_value import map_value
@@ -18,12 +18,18 @@ class Colony:
         self.conf = conf
         self.count = conf["lemming-count"]
 
+        self.scale_values = set(
+            range(self.conf["scale"]["min"], self.conf["scale"]["max"] + 1)
+        )
         self.lemmings = [self.new_lemming() for i in range(self.count)]
 
     def new_lemming(self):
         """New little guy."""
+        scale = choice(tuple(self.scale_values))
+        self.scale_values.remove(scale)
+
         params = {
-            "scale": randint(self.conf["scale"]["min"], self.conf["scale"]["max"]),
+            "scale": scale,
             "flipped": choice([True, False]),
             "hue": self.hue,
             "randomised-offset": True,
@@ -54,7 +60,9 @@ class Colony:
         fresh_lemmings = []
         for lemming in self.lemmings:
             if not lemming.done:
-                fresh_lemmings.append(lemming)  # noqa: PERF401
+                fresh_lemmings.append(lemming)
+            else:
+                self.scale_values.add(lemming.scale)
 
         for _ in range(self.count - len(fresh_lemmings)):
             fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
