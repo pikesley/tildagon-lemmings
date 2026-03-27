@@ -18,6 +18,8 @@ class Colony:
         self.conf = conf
         self.count = conf["lemming-count"]
 
+        self.freak_token = 1
+
         self.scale_values = set(
             range(self.conf["scale"]["min"], self.conf["scale"]["max"] + 1)
         )
@@ -34,13 +36,15 @@ class Colony:
             "hue": self.hue,
             "randomised-offset": True,
         }
-        if random() > self.conf["moonwalk-threshold"]:
+        lemming_class = Walker
+        if random() > self.conf["freak-threshold"] and self.freak_token:
+            lemming_class = Faller
+            self.freak_token = 0
+            params["freak"] = True
+
+        if lemming_class == Walker and random() > self.conf["moonwalk-threshold"]:
             params["moonwalker"] = True
             params["hue"] = self.hue + 1 / 3
-
-        lemming_class = Walker
-        if random() > self.conf["faller-threshold"]:
-            lemming_class = Faller
 
         lemming = lemming_class(params)
         lemming.opacity = map_value(
@@ -63,6 +67,8 @@ class Colony:
                 fresh_lemmings.append(lemming)
             else:
                 self.scale_values.add(lemming.scale)
+                if "freak" in lemming.params:
+                    self.freak_token = 1
 
         for _ in range(self.count - len(fresh_lemmings)):
             fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
