@@ -1,5 +1,4 @@
 from math import atan2
-from random import choice, randint, random
 
 import imu
 from events.input import BUTTON_TYPES, Buttons
@@ -10,8 +9,8 @@ from tildagonos import tildagonos
 import app
 
 from .common.colour_tools import rgb_from_hue
-from .common.map_value import map_value
 from .lib.background import Background
+from .lib.colony import Colony
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
 from .lib.lemmings.faller import Faller
@@ -34,34 +33,10 @@ class Lemmings(app.App):
         self.index = 0
 
         self.hue = 1 / 3
-
-        self.lemming_count = conf["lemming-count"]
-        self.lemmings = [self.new_lemming() for i in range(self.lemming_count)]
+        self.colony = Colony(self.hue, conf)
 
         self.rotation_offset = 0
 
-    def new_lemming(self):
-        """New little guy."""
-        params = {
-            "scale": randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
-            "flipped": choice([True, False]),
-            "hue": self.hue,
-            "randomised-offset": True,
-        }
-        if random() > conf["moonwalk-threshold"]:
-            params["moonwalker"] = True
-            params["hue"] = self.hue + 1 / 3
-
-        lemming_class = Walker
-        if random() > conf["faller-threshold"]:
-            lemming_class = Faller
-
-        lemming = lemming_class(params)
-        lemming.opacity = map_value(
-            lemming.scale, conf["scale"]["min"], conf["scale"]["max"], 0.2, 1
-        )
-
-        return lemming
 
     def update(self, _):
         """Update."""
@@ -70,22 +45,24 @@ class Lemmings(app.App):
         self.rotation_offset = (atan2(acc[1], acc[0])) * weighting
 
         self.scan_buttons()
-        for lemming in self.lemmings:
+        for lemming in self.colony.lemmings:
             lemming.animate()
             lemming.move()
 
         self.hue = (self.hue + conf["hue-increment"]) % 1
         self.light_leds()
 
+        self.colony.hue = self.hue
+
         fresh_lemmings = []
-        for lemming in self.lemmings:
+        for lemming in self.colony.lemmings:
             if not lemming.done:
                 fresh_lemmings.append(lemming)  # noqa: PERF401
 
-        for _ in range(self.lemming_count - len(fresh_lemmings)):
-            fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
+        for _ in range(self.colony.count - len(fresh_lemmings)):
+            fresh_lemmings.append(self.colony.new_lemming())  # noqa: PERF401
 
-        self.lemmings = sorted(fresh_lemmings)
+        self.colony.lemmings = sorted(fresh_lemmings)
 
     def draw(self, ctx):
         """Draw."""
@@ -94,7 +71,7 @@ class Lemmings(app.App):
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
 
-        for lemming in self.lemmings:
+        for lemming in self.colony.lemmings:
             self.overlays.extend(lemming.pixels)
         self.draw_overlays(ctx)
 
