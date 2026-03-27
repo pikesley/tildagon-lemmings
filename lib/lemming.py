@@ -25,6 +25,7 @@ class Lemming:
 
     def __init__(self, variety, params):
         """Construct."""
+        self.conf = conf
         self.params = dict(defaults, **params)
         self.variety = variety
 

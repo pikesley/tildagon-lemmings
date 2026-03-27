@@ -1,10 +1,10 @@
 from .vertical_lemming import VerticalLemming
 
 
-class Umbrella(VerticalLemming):
-    """An umbrella faller."""
+class Digger(VerticalLemming):
+    """A digger."""
 
     def __init__(self, params=None):
         """Construct."""
-        self.name = "umbrella"
+        self.name = "digger"
         super().__init__(self.name, params or {})

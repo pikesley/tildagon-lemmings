@@ -46,3 +46,11 @@ class HorizontalLemming(Lemming):
     def randomise_offset(self):
         """Set y to something random."""
         self.set_y(randint(int(-self.y_limit), int(self.y_limit)))
+
+    def move(self):
+        """Walk."""
+        increment = self.speed * self.scale * self.conf["movement-factors"][self.name]
+        if self.flipped:
+            self.x -= increment
+        else:
+            self.x += increment

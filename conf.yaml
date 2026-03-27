@@ -1,15 +1,32 @@
 scale:
-  min: 2
-  max: 12
+  min: 4
+  max: 10
 
 led-brightness: 0.5
-colour-value-factor: 0.8
+colour-value-factor: 0.8 # darken screen colours this much
 hue-increment: 0.005
 
 lemming-count: 3
 
 moonwalk-threshold: 0.9
 freak-threshold: 0.6
+
+thresholds:
+  freak: 0.6
+  moonwalk: 0.9
+
+lemming-defaults:
+  scale: 4
+  speed: 1
+  flipped: false
+  moonwalker: false
+  randomised-offset: false
+
+movement-factors:
+  walker: 1.0
+  faller: 1.0
+  umbrella: 0.5
+  digger: 0.1
 
 colours:
   blue:
@@ -42,10 +59,3 @@ default-colours:
   sk: [1.0, 0.9215686274509803, 0.8745098039215686]
   cl: [0.37254901960784315, 0.38823529411764707, 1.0]
   um: [1.0, 1.0, 0.0]
-
-lemming-defaults:
-  scale: 4
-  speed: 1
-  flipped: false
-  moonwalker: false
-  randomised-offset: false

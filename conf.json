@@ -54,7 +54,7 @@
       0.0
     ]
   },
-  "freak-threshold": 0.8,
+  "freak-threshold": 0.6,
   "hue-increment": 0.005,
   "led-brightness": 0.5,
   "lemming-count": 3,
@@ -66,8 +66,18 @@
     "speed": 1
   },
   "moonwalk-threshold": 0.9,
+  "movement-factors": {
+    "digger": 0.1,
+    "faller": 1.0,
+    "umbrella": 0.5,
+    "walker": 1.0
+  },
   "scale": {
-    "max": 12,
-    "min": 2
+    "max": 10,
+    "min": 4
+  },
+  "thresholds": {
+    "freak": 0.6,
+    "moonwalk": 0.9
   }
 }

@@ -42,3 +42,7 @@ class VerticalLemming(Lemming):
     def randomise_offset(self):
         """Set x to something random."""
         self.set_x(randint(int(-self.x_limit), int(self.x_limit)))
+
+    def move(self):
+        """Dig."""
+        self.y += self.speed * self.scale * self.conf["movement-factors"][self.name]

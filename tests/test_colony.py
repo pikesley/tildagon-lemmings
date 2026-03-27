@@ -6,8 +6,10 @@ def test_scale_exclusion():
     test_conf = {
         "lemming-count": 3,
         "scale": {"min": 1, "max": 3},
-        "moonwalk-threshold": 1,
-        "freak-threshold": 1,
+        "thresholds": {
+            "freak": 1,
+            "moonwalk": 1,
+        },
     }
     col = Colony(1.0, test_conf)
 
@@ -20,8 +22,10 @@ def test_freak_exclusion():
     test_conf = {
         "lemming-count": 3,
         "scale": {"min": 1, "max": 3},
-        "moonwalk-threshold": 1,
-        "freak-threshold": 0,
+        "thresholds": {
+            "freak": 0,
+            "moonwalk": 1,
+        },
     }
     col = Colony(1.0, test_conf)
 

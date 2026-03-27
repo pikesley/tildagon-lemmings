@@ -6,11 +6,5 @@ class Walker(HorizontalLemming):
 
     def __init__(self, params=None):
         """Construct."""
-        super().__init__("walker", params or {})
-
-    def move(self):
-        """Walk."""
-        if self.flipped:
-            self.x -= self.speed * self.scale
-        else:
-            self.x += self.speed * self.scale
+        self.name = "walker"
+        super().__init__(self.name, params or {})

@@ -7,9 +7,10 @@ lookups = {
     "[0, 179, 0]": "hr",
     "[255, 235, 223]": "sk",
     "[255, 255, 0]": "um",
+    "[99, 0, 19]": "dt",
 }
 
-data = json.loads(Path("bitmaps/umbrella.json").read_text())
+data = json.loads(Path("bitmaps/digger.json").read_text())
 
 colours = set()
 
@@ -22,6 +23,8 @@ for sprite in data:
         fixed = [lookups[str(x)] for x in row]
         colourised[-1].append(fixed)
 
-Path("bitmaps", "umbrella-colours.json").write_text(
+print(colours)
+
+Path("bitmaps", "digger-colours.json").write_text(
     json.dumps(colourised), encoding="utf-8"
 )

@@ -5,11 +5,13 @@ try:
 except ImportError:
     from common.map_value import map_value
 
+from .lemmings.digger import Digger
 from .lemmings.faller import Faller
 from .lemmings.umbrella import Umbrella
 from .lemmings.walker import Walker
 
 freaks = [
+    Digger,
     Faller,
     Umbrella,
 ]
@@ -43,12 +45,12 @@ class Colony:
             "randomised-offset": True,
         }
         lemming_class = Walker
-        if random() > self.conf["freak-threshold"] and self.freak_token:
+        if random() > self.conf["thresholds"]["freak"] and self.freak_token:
             lemming_class = choice(freaks)
             self.freak_token = 0
             params["freak"] = True
 
-        if lemming_class == Walker and random() > self.conf["moonwalk-threshold"]:
+        if lemming_class == Walker and random() > self.conf["thresholds"]["freak"]:
             params["moonwalker"] = True
             params["hue"] = self.hue + 1 / 3
 

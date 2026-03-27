@@ -51,6 +51,7 @@ class RotatingOutfit(Outfit):
             "hr": rgb_from_hue(hue),
             "cl": rgb_from_hue(hue + 1 / 3),
             "um": rgb_from_hue(hue + 2 / 3),
+            "dt": rgb_from_hue(hue + 2 / 3),
         }
 
 
