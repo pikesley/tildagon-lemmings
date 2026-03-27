@@ -1,3 +1,6 @@
+from .asset_path import ASSET_PATH
+
+
 class Background:
     """Background."""
 
@@ -11,4 +14,5 @@ class Background:
 
     def draw(self, ctx):
         """Draw ourself."""
+        # ctx.image(ASSET_PATH + "images/emf.png", -120, -120, 240, 240)
         ctx.rgba(*self.colour).rectangle(-120, -120, 240, 240).fill()

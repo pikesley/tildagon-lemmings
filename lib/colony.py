@@ -1,6 +1,10 @@
 from random import choice, randint, random
 
-from ..common.map_value import map_value
+try:
+    from ..common.map_value import map_value
+except ImportError:
+    from common.map_value import map_value
+
 from .lemmings.faller import Faller
 from .lemmings.walker import Walker
 
@@ -19,7 +23,7 @@ class Colony:
     def new_lemming(self):
         """New little guy."""
         params = {
-            "scale": randint(self.conf["scale"]["min"], self.conf["scale"]["max"]) * 2,
+            "scale": randint(self.conf["scale"]["min"], self.conf["scale"]["max"]),
             "flipped": choice([True, False]),
             "hue": self.hue,
             "randomised-offset": True,
@@ -34,7 +38,7 @@ class Colony:
 
         lemming = lemming_class(params)
         lemming.opacity = map_value(
-            lemming.scale, self.conf["scale"]["min"], self.conf["scale"]["max"], 0.2, 1
+            lemming.scale, self.conf["scale"]["min"], self.conf["scale"]["max"], 0.5, 1
         )
 
         return lemming

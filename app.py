@@ -1,26 +1,14 @@
-from math import atan2
-
-import imu
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
-from tildagonos import tildagonos
 
 import app
 
-from .common.colour_tools import rgb_from_hue
+from .common.led_lighter import LEDLighter
+from .common.rotation_monitor import RotationMonitor
 from .lib.background import Background
 from .lib.colony import Colony
 from .lib.conf import conf
-from .lib.gamma import gamma_corrections
-from .lib.lemmings.faller import Faller
-from .lib.lemmings.walker import Walker
-
-characters = [
-    Faller,
-    Walker,
-    # Basher,
-]
 
 
 class Lemmings(app.App):
@@ -35,18 +23,15 @@ class Lemmings(app.App):
         self.hue = 1 / 3
         self.colony = Colony(self.hue, conf)
 
-        self.rotation_offset = 0
+        self.rotation_monitor = RotationMonitor()
+        self.leds = LEDLighter(conf["led-brightness"])
 
     def update(self, _):
         """Update."""
-        acc = imu.acc_read()
-        weighting = min(1.0, int(abs(10 - acc[2])) / 9)
-        self.rotation_offset = (atan2(acc[1], acc[0])) * weighting
-
         self.scan_buttons()
 
         self.hue = (self.hue + conf["hue-increment"]) % 1
-        self.light_leds()
+        self.leds.light(self.hue, self.hue + 1 / 3)
 
         self.colony.hue = self.hue
         self.colony.mobilise()
@@ -54,7 +39,7 @@ class Lemmings(app.App):
 
     def draw(self, ctx):
         """Draw."""
-        ctx.rotate(-self.rotation_offset)
+        ctx.rotate(self.rotation_monitor.read())
 
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
@@ -69,31 +54,18 @@ class Lemmings(app.App):
             self.button_states.clear()
             self.minimise()
 
-        if self.button_states.get(BUTTON_TYPES["UP"]):
-            self.button_states.clear()
-            self.next_lemming()
+    # def light_leds(self):
+    #     """Light the lights."""
+    #     colour = rgb_from_hue(self.hue)
+    #     for i in range(18):
+    #         if i > 11:
+    #             colour = rgb_from_hue(self.hue + 1 / 3)
+    #         tildagonos.leds[i + 1] = [
+    #             gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in
+    # colour
+    #         ]
 
-        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
-            self.button_states.clear()
-            self.lemming.animate()
-            print(self.lemming.frame_index)
-
-        if self.button_states.get(BUTTON_TYPES["LEFT"]):
-            self.button_states.clear()
-            self.lemming.move()
-            print(self.lemming.frame_index)
-
-    def light_leds(self):
-        """Light the lights."""
-        colour = rgb_from_hue(self.hue)
-        for i in range(18):
-            if i > 11:
-                colour = rgb_from_hue(self.hue + 1 / 3)
-            tildagonos.leds[i + 1] = [
-                gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in colour
-            ]
-
-        tildagonos.leds.write()
+    #     tildagonos.leds.write()
 
 
 __app_export__ = Lemmings
