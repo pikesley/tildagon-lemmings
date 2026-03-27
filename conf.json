@@ -47,9 +47,14 @@
       1.0,
       0.9215686274509803,
       0.8745098039215686
+    ],
+    "um": [
+      1.0,
+      1.0,
+      0.0
     ]
   },
-  "freak-threshold": 0.9,
+  "freak-threshold": 0.8,
   "hue-increment": 0.005,
   "led-brightness": 0.5,
   "lemming-count": 3,
@@ -60,7 +65,7 @@
     "scale": 4,
     "speed": 1
   },
-  "moonwalk-threshold": 0.95,
+  "moonwalk-threshold": 0.9,
   "scale": {
     "max": 12,
     "min": 2

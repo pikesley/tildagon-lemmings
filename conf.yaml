@@ -8,8 +8,8 @@ hue-increment: 0.005
 
 lemming-count: 3
 
-moonwalk-threshold: 0.95
-freak-threshold: 0.9
+moonwalk-threshold: 0.9
+freak-threshold: 0.6
 
 colours:
   blue:
@@ -41,6 +41,7 @@ default-colours:
   hr: [0.0, 0.7019607843137254, 0.0]
   sk: [1.0, 0.9215686274509803, 0.8745098039215686]
   cl: [0.37254901960784315, 0.38823529411764707, 1.0]
+  um: [1.0, 1.0, 0.0]
 
 lemming-defaults:
   scale: 4

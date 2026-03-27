@@ -6,7 +6,13 @@ except ImportError:
     from common.map_value import map_value
 
 from .lemmings.faller import Faller
+from .lemmings.umbrella import Umbrella
 from .lemmings.walker import Walker
+
+freaks = [
+    Faller,
+    Umbrella,
+]
 
 
 class Colony:
@@ -38,7 +44,7 @@ class Colony:
         }
         lemming_class = Walker
         if random() > self.conf["freak-threshold"] and self.freak_token:
-            lemming_class = Faller
+            lemming_class = choice(freaks)
             self.freak_token = 0
             params["freak"] = True
 

@@ -9,5 +9,5 @@ class Faller(VerticalLemming):
         super().__init__("faller", params or {})
 
     def move(self):
-        """Walk."""
+        """Fall."""
         self.y += self.speed * self.scale
