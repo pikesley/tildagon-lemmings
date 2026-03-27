@@ -13,6 +13,10 @@ class HorizontalLemming(Lemming):
 
         self.y = 0
         self.y_limit = 120 - ((self.height / 2) * self.scale)
+
+        if self.params["randomised-offset"]:
+            self.randomise_offset()
+
         self.x = self.calculate_start_x()
         self.final_x = 0 - self.x
 

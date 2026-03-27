@@ -2,18 +2,12 @@ from .vertical_lemming import VerticalLemming
 
 
 class Faller(VerticalLemming):
-    """A walker."""
+    """A faller."""
 
-    def __init__(self, offset=0, scale=4, speed=1, flipped=False):
+    def __init__(self, params=None):
         """Construct."""
-        super().__init__(
-            variety="faller",
-            x=offset,
-            scale=scale,
-            speed=speed,
-            flipped=flipped,
-        )
+        super().__init__("faller", params or {})
 
     def move(self):
-        """Fall."""
+        """Walk."""
         self.y += self.speed * self.scale

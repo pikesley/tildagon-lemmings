@@ -15,9 +15,10 @@ from .lib.background import Background
 from .lib.conf import conf
 from .lib.gamma import gamma_corrections
 from .lib.lemmings.walker import Walker
+from .lib.lemmings.faller import Faller
 
 characters = [
-    # Faller,
+    Faller,
     Walker,
     # Basher,
 ]
@@ -45,13 +46,17 @@ class Lemmings(app.App):
             "scale": randint(conf["scale"]["min"], conf["scale"]["max"]) * 2,
             "flipped": choice([True, False]),
             "hue": self.hue,
+            "randomised-offset": True,
         }
         if random() > conf["moonwalk-threshold"]:
             params["moonwalker"] = True
             params["hue"] = self.hue + 1 / 3
 
-        lemming = choice(characters)(params)
-        lemming.randomise_offset()
+        lemming_class =  Walker
+        if random() > conf["faller-threshold"]:
+            lemming_class = Faller
+
+        lemming = lemming_class(params)
         lemming.opacity = map_value(
             lemming.scale, conf["scale"]["min"], conf["scale"]["max"], 0.2, 1
         )

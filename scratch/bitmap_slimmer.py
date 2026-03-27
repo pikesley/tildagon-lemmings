@@ -6,7 +6,7 @@ frames = {}
 leading = 16
 trailing = 16
 
-for j in Path("bitmaps/walker").glob("*"):
+for j in Path("bitmaps/faller").glob("*"):
     frames[int(j.stem)] = json.loads(j.read_text(encoding="utf-8"))
 
 
@@ -36,4 +36,4 @@ for key in sorted(frames.keys()):
     for row in frames[key]:
         slimmed[-1].append(row[leading:-trailing])
 
-Path("bitmaps/walker.json").write_text(json.dumps(slimmed))
+Path("bitmaps/faller.json").write_text(json.dumps(slimmed))

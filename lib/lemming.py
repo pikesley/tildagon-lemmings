@@ -16,12 +16,13 @@ except FileNotFoundError:
 
     conf = json.loads(Path("conf.json").read_text())
 
-defaults = {
+defaults = {  # TODO move this to `conf.yaml`?
     "scale": 4,
     "speed": 1,
     "flipped": False,
     "asset-path": ASSET_PATH,
     "moonwalker": False,
+    "randomised-offset": False,
 }
 
 
@@ -38,6 +39,9 @@ class Lemming:
         self.scale = self.params["scale"]
         self.speed = self.params["speed"]
         self.moonwalker = self.params["moonwalker"]
+
+        # if self.params["randomised-offset"]:
+        #     self.randomise_offset()
 
         self.load_frames()
         self.frame_index = 0

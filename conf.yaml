@@ -9,6 +9,7 @@ hue-increment: 0.005
 lemming-count: 3
 
 moonwalk-threshold: 0.95
+faller-threshold: 0.9
 
 colours:
   blue:

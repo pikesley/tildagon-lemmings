@@ -8,7 +8,7 @@ lookups = {
     "[95, 99, 255]": "clothing",
 }
 
-data = json.loads(Path("bitmaps/walker.json").read_text())
+data = json.loads(Path("bitmaps/faller.json").read_text())
 
 colourised = []
 for sprite in data:
@@ -17,6 +17,6 @@ for sprite in data:
         fixed = [lookups[str(x)] for x in row]
         colourised[-1].append(fixed)
 
-Path("bitmaps", "walker-colours.json").write_text(
+Path("bitmaps", "faller-colours.json").write_text(
     json.dumps(colourised), encoding="utf-8"
 )
