@@ -21,21 +21,28 @@ except FileNotFoundError:
 
 defaults = dict(conf["lemming-defaults"], **{"asset-path": ASSET_PATH})
 
+# for a HorizontalLemming, `fixed_position` == `y`, `variable_position` == `x`
+# for a VerticalLemming, `fixed_position` == `x`, `variable_position` == `y`
+
 
 class Lemming:
     """A little guy."""
 
     def __init__(self, params):
         """Construct."""
+        # this is clunky
         self.subclass = self.__class__.__bases__[0].__name__
+
+        # this allows us to test the intermediate classes
         if self.subclass == "Lemming":
             self.subclass = self.__class__.__name__
 
-        self.conf = conf
-        self.params = dict(defaults, **params)
-
+        # this is also purely for testing, real subclasses set their name
         if "name" in params:
             self.name = params["name"]
+
+        self.conf = conf
+        self.params = dict(defaults, **params)
 
         self.flipped = self.params["flipped"]
         self.asset_path = self.params["asset-path"]
@@ -45,23 +52,28 @@ class Lemming:
 
         self.load_frames()
         self.frame_index = 0
+
+        if self.subclass == "HorizontalLemming":
+            self.scaling_dimension = self.width
+        else:
+            self.scaling_dimension = self.height
+
         self.opacity = 1
 
         self.hue = params.get("hue", 1.0)
 
         self.outfit = RotatingOutfit(self.hue)
 
-        if self.subclass == "HorizontalLemming":
-            self.scaling_dimension = self.height
-        else:
-            self.scaling_dimension = self.width
-
+        # our starting `y`` (for Horizontal) or `x` (for Vertical)
         self.fixed_position = 0
+
+        # ensure the entire lemming fits on the screen
         self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
 
         if self.params["randomised-offset"]:
             self.randomise_offset()
 
+        # the axis we move through. `x` for Horizontal or `y` for Vertical
         self.variable_position = self.calculate_start_variable_position()
         self.final_variable_position = 0 - self.variable_position
 
@@ -126,13 +138,13 @@ class Lemming:
         self.final_variable_position = 0 - self.variable_position
 
     def randomise_offset(self):
-        """Set fixed_position to something random."""
+        """Set `fixed_position` to something random."""
         self.set_fixed_position(
             randint(int(-self.fixed_position_limit), int(self.fixed_position_limit))
         )
 
     def calculate_start_variable_position(self):
-        """Starting x-position."""
+        """Starting `variable_position`."""
         limit = sqrt(120**2 - self.fixed_position**2)
 
         position = -limit - (self.scaling_dimension * self.scale)

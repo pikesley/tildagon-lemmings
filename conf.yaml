@@ -13,7 +13,7 @@ freak-threshold: 0.6
 
 thresholds:
   freak: 0.6
-  moonwalk: 0.9
+  moonwalk: 0.95
 
 lemming-defaults:
   scale: 4
