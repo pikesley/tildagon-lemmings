@@ -28,6 +28,8 @@ class Lemming:
     def __init__(self, params):
         """Construct."""
         self.subclass = self.__class__.__bases__[0].__name__
+        if self.subclass == "Lemming":
+            self.subclass = self.__class__.__name__
 
         self.conf = conf
         self.params = dict(defaults, **params)

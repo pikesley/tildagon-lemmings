@@ -67,7 +67,7 @@
   },
   "moonwalk-threshold": 0.9,
   "movement-factors": {
-    "digger": 0.1,
+    "digger": 0.2,
     "faller": 1.0,
     "umbrella": 0.5,
     "walker": 1.0

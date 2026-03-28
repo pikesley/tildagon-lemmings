@@ -21,3 +21,8 @@ class HorizontalLemming(Lemming):
 
         self.x = self.variable_position
         self.y = self.fixed_position
+
+    def set_fixed_position(self, value):
+        """Set our `fixed_position`."""
+        super().set_fixed_position(value)
+        self.x = self.variable_position

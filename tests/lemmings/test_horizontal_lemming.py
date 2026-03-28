@@ -23,7 +23,7 @@ def test_end_position():
     h_lem = HorizontalLemming(params)
 
     assert h_lem.x == 128
-    assert h_lem.final_x == -128
+    assert h_lem.final_variable_position == -128
 
 
 def test_start_position_when_offset():
