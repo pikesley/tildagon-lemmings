@@ -1,5 +1,3 @@
-from math import sqrt
-
 from ..lemming import Lemming
 
 
@@ -12,16 +10,6 @@ class VerticalLemming(Lemming):
 
         self.x = self.fixed_position
         self.y = self.variable_position
-
-    def calculate_start_variable_position(self):
-        """Starting x-position."""
-        limit = sqrt(120**2 - self.fixed_position**2)
-
-        position = -limit - (self.width * self.scale)
-        if self.flipped:
-            position = limit + (self.width * self.scale)
-
-        return round(position)
 
     def move(self):
         """Dig."""

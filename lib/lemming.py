@@ -27,6 +27,8 @@ class Lemming:
 
     def __init__(self, params):
         """Construct."""
+        self.subclass = self.__class__.__bases__[0].__name__
+
         self.conf = conf
         self.params = dict(defaults, **params)
 
@@ -47,7 +49,11 @@ class Lemming:
 
         self.outfit = RotatingOutfit(self.hue)
 
-        self.scaling_dimension = self.height
+        if self.subclass == "HorizontalLemming":
+            self.scaling_dimension = self.height
+        else:
+            self.scaling_dimension = self.width
+
         self.fixed_position = 0
         self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
 
@@ -127,8 +133,8 @@ class Lemming:
         """Starting x-position."""
         limit = sqrt(120**2 - self.fixed_position**2)
 
-        position = -limit - (self.width * self.scale)
-        if self.flipped:
-            position = limit + (self.width * self.scale)
+        position = -limit - (self.scaling_dimension * self.scale)
+        if self.flipped and self.subclass == "HorizontalLemming":
+            position = limit + (self.scaling_dimension * self.scale)
 
         return round(position)
