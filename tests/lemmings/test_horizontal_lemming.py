@@ -2,11 +2,11 @@ from lib.lemmings.horizontal_lemming import HorizontalLemming
 from tests.helpers import test_defaults
 
 
-def test_y_limit():
+def test_fixed_position_limit():
     """Test."""
     h_lem = HorizontalLemming(test_defaults)
 
-    assert h_lem.y_limit == 116
+    assert h_lem.fixed_position_limit == 116
 
 
 def test_start_position():
@@ -29,7 +29,7 @@ def test_end_position():
 def test_start_position_when_offset():
     """Test."""
     h_lem = HorizontalLemming(test_defaults)
-    h_lem.set_y(-60)
+    h_lem.set_fixed_position(-60)
 
     assert h_lem.x == -112
 

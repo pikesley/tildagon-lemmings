@@ -54,18 +54,5 @@ class Lemmings(app.App):
             self.button_states.clear()
             self.minimise()
 
-    # def light_leds(self):
-    #     """Light the lights."""
-    #     colour = rgb_from_hue(self.hue)
-    #     for i in range(18):
-    #         if i > 11:
-    #             colour = rgb_from_hue(self.hue + 1 / 3)
-    #         tildagonos.leds[i + 1] = [
-    #             gamma_corrections[int(i * 255 * conf["led-brightness"])] for i in
-    # colour
-    #         ]
-
-    #     tildagonos.leds.write()
-
 
 __app_export__ = Lemmings

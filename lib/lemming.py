@@ -37,9 +37,6 @@ class Lemming:
         self.speed = self.params["speed"]
         self.moonwalker = self.params["moonwalker"]
 
-        # if self.params["randomised-offset"]:
-        #     self.randomise_offset()
-
         self.load_frames()
         self.frame_index = 0
         self.opacity = 1

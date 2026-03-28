@@ -11,8 +11,9 @@ class HorizontalLemming(Lemming):
         """Construct."""
         super().__init__(params)
 
-        self.y = 0
-        self.y_limit = 120 - ((self.height / 2) * self.scale)
+        self.fixed_position = 0
+        self.fixed_position_limit = 120 - ((self.height / 2) * self.scale)
+        self.y = self.fixed_position
 
         if self.params["randomised-offset"]:
             self.randomise_offset()
@@ -22,7 +23,7 @@ class HorizontalLemming(Lemming):
 
     def calculate_start_x(self):
         """Starting x-position."""
-        limit = sqrt(120**2 - self.y**2)
+        limit = sqrt(120**2 - self.fixed_position**2)
 
         position = -limit - (self.width * self.scale)
         if self.flipped:
@@ -37,15 +38,17 @@ class HorizontalLemming(Lemming):
             return self.x < self.final_x
         return self.x > self.final_x
 
-    def set_y(self, value):
-        """Set our `y`."""
-        self.y = value
+    def set_fixed_position(self, value):
+        """Set our `fixed_position`."""
+        self.fixed_position = value
         self.x = self.calculate_start_x()
         self.final_x = 0 - self.x
 
     def randomise_offset(self):
-        """Set y to something random."""
-        self.set_y(randint(int(-self.y_limit), int(self.y_limit)))
+        """Set fixed_position to something random."""
+        self.set_fixed_position(
+            randint(int(-self.fixed_position_limit), int(self.fixed_position_limit))
+        )
 
     def move(self):
         """Walk."""
@@ -54,3 +57,4 @@ class HorizontalLemming(Lemming):
             self.x -= increment
         else:
             self.x += increment
+        self.y = self.fixed_position
