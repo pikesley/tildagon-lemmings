@@ -11,8 +11,9 @@ class HorizontalLemming(Lemming):
         """Construct."""
         super().__init__(params)
 
+        self.scaling_dimension = self.height
         self.fixed_position = 0
-        self.fixed_position_limit = 120 - ((self.height / 2) * self.scale)
+        self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
 
         if self.params["randomised-offset"]:
             self.randomise_offset()
@@ -59,5 +60,6 @@ class HorizontalLemming(Lemming):
             self.variable_position -= increment
         else:
             self.variable_position += increment
+
         self.x = self.variable_position
         self.y = self.fixed_position

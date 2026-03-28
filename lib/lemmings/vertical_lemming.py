@@ -11,38 +11,50 @@ class VerticalLemming(Lemming):
         """Construct."""
         super().__init__(params)
 
-        self.x = 0
-        self.x_limit = 120 - ((self.width / 2) * self.scale)
+        self.scaling_dimension = self.width
+        self.fixed_position = 0
+        self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
 
         if self.params["randomised-offset"]:
             self.randomise_offset()
 
-        self.y = self.calculate_start_y()
-        self.final_y = 0 - self.y
+        self.variable_position = self.calculate_start_variable_position()
+        self.final_variable_position = 0 - self.variable_position
 
-    def calculate_start_y(self):
-        """Starting y-position."""
-        limit = sqrt(120**2 - self.x**2)
+        self.x = self.fixed_position
+        self.y = self.variable_position
 
-        position = -limit - (self.height * self.scale)
+    def calculate_start_variable_position(self):
+        """Starting x-position."""
+        limit = sqrt(120**2 - self.fixed_position**2)
+
+        position = -limit - (self.width * self.scale)
+        if self.flipped:
+            position = limit + (self.width * self.scale)
 
         return round(position)
 
     @property
     def done(self):
         """Are we off-screen?"""
-        return self.y > self.final_y
+        return self.variable_position > self.final_variable_position
 
-    def set_x(self, value):
-        """Set our `x`."""
-        self.x = value
-        self.y = self.calculate_start_y()
-        self.final_y = 0 - self.y
+    def set_fixed_position(self, value):
+        """Set our `fixed_position`."""
+        self.fixed_position = value
+        self.variable_position = self.calculate_start_variable_position()
+        self.final_variable_position = 0 - self.variable_position
 
     def randomise_offset(self):
-        """Set x to something random."""
-        self.set_x(randint(int(-self.x_limit), int(self.x_limit)))
+        """Set fixed_position to something random."""
+        self.set_fixed_position(
+            randint(int(-self.fixed_position_limit), int(self.fixed_position_limit))
+        )
 
     def move(self):
         """Dig."""
-        self.y += self.speed * self.scale * self.conf["movement-factors"][self.name]
+        increment = self.speed * self.scale * self.conf["movement-factors"][self.name]
+        self.variable_position += increment
+
+        self.x = self.fixed_position
+        self.y = self.variable_position
