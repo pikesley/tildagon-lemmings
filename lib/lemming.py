@@ -53,6 +53,10 @@ class Lemming:
         self.load_frames()
         self.frame_index = 0
 
+        self.configure()
+
+    def configure(self):
+        """Post-initialisation configuration."""
         if self.subclass == "HorizontalLemming":
             self.scaling_dimension = self.width
         else:
@@ -60,7 +64,7 @@ class Lemming:
 
         self.opacity = 1
 
-        self.hue = params.get("hue", 1.0)
+        self.hue = self.params.get("hue", 1.0)
 
         self.outfit = RotatingOutfit(self.hue)
 
