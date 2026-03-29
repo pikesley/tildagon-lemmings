@@ -1,4 +1,4 @@
-from .horizontal_lemming import HorizontalLemming
+from ..horizontal_lemming import HorizontalLemming
 
 
 class Walker(HorizontalLemming):

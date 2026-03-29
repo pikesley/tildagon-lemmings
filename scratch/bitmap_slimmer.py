@@ -6,7 +6,7 @@ frames = {}
 leading = 16
 trailing = 16
 
-for j in Path("bitmaps/digger").glob("*"):
+for j in Path("bitmaps/basher").glob("*"):
     frames[int(j.stem)] = json.loads(j.read_text(encoding="utf-8"))
 
 
@@ -37,4 +37,4 @@ for key in sorted(frames.keys()):
         slimmed[-1].append(row[:])
         # slimmed[-1].append(row[leading:-trailing])
 
-Path("bitmaps/digger.json").write_text(json.dumps(slimmed))
+Path("bitmaps/basher.json").write_text(json.dumps(slimmed))

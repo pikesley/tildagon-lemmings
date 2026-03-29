@@ -1,4 +1,4 @@
-from lib.lemmings.walker import Walker
+from lib.lemmings.horizontal_lemmings.walker import Walker
 from tests.helpers import test_defaults
 
 params = dict(test_defaults, name="walker")

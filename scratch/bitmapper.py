@@ -31,10 +31,10 @@ for index, row in enumerate(batched(img.get_flattened_data(), 16)):
 
 for key, pixels in sprites.items():
     if compress:
-        Path(root_path, f"{key}.json.gz").write_bytes(
+        Path(root_path, f"{key + 16}.json.gz").write_bytes(
             gzip.compress(json.dumps(pixels).encode("utf-8"))
         )
     else:
-        Path(root_path, f"{key}.json").write_text(
+        Path(root_path, f"{key + 16}.json").write_text(
             json.dumps(pixels, indent=2), encoding="utf-8"
         )

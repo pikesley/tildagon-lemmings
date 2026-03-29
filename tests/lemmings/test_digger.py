@@ -1,4 +1,4 @@
-from lib.lemmings.digger import Digger
+from lib.lemmings.vertical_lemmings.digger import Digger
 from tests.helpers import test_defaults
 
 params = dict(test_defaults, name="digger")

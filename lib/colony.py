@@ -5,15 +5,17 @@ try:
 except ImportError:
     from common.map_value import map_value
 
-from .lemmings.digger import Digger
-from .lemmings.faller import Faller
-from .lemmings.umbrella import Umbrella
-from .lemmings.walker import Walker
+from .lemmings.horizontal_lemmings.walker import Walker
+from .lemmings.vertical_lemmings.digger import Digger
+from .lemmings.vertical_lemmings.faller import Faller
+from .lemmings.vertical_lemmings.umbrella import Umbrella
+from .lemmings.horizontal_lemmings.basher import Basher
 
 freaks = [
-    Digger,
-    Faller,
-    Umbrella,
+    Basher,
+    # Digger,
+    # Faller,
+    # Umbrella,
 ]
 
 

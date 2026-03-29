@@ -1,4 +1,4 @@
-from .vertical_lemming import VerticalLemming
+from ..vertical_lemming import VerticalLemming
 
 
 class Umbrella(VerticalLemming):
