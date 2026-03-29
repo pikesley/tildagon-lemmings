@@ -18,8 +18,8 @@ class VerticalLemming(Lemming):
 
     def move(self):
         """Dig."""
-        increment = self.speed * self.scale * self.conf["movement-factors"][self.name]
-        self.variable_position += increment
+        self.variable_position += self.movement_increment
+
         self.update_x_y()
 
     def set_fixed_position(self, value):

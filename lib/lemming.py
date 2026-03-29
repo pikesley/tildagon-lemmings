@@ -51,7 +51,13 @@ class Lemming:
 
     def configure(self):
         """Post-initialisation configuration."""
-        # our starting `y`` (for Horizontal) or `x` (for Vertical)
+        self.movement_increment = (
+            self.speed
+            * self.scale
+            * self.conf["movement-controls"][self.name]["scale-factor"]
+        )
+
+        # our starting `y` (for Horizontal) or `x` (for Vertical)
         self.set_fixed_position(0)
 
         # ensure the entire lemming fits on the screen

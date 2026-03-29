@@ -1,37 +1,5 @@
 {
   "colour-value-factor": 0.8,
-  "colours": {
-    "blue": [
-      0.3137254901960784,
-      0.32941176470588235,
-      0.996078431372549
-    ],
-    "green": [
-      0.0,
-      0.7019607843137254,
-      0.0
-    ],
-    "indigo": [
-      0.37254901960784315,
-      0.38823529411764707,
-      1.0
-    ],
-    "magenta": [
-      0.8666666666666667,
-      0.0,
-      1.0
-    ],
-    "orange": [
-      0.9803921568627451,
-      0.6862745098039216,
-      0.0
-    ],
-    "red": [
-      1.0,
-      0.0,
-      0.0
-    ]
-  },
   "default-colours": {
     "cl": [
       0.37254901960784315,
@@ -66,12 +34,25 @@
     "speed": 1
   },
   "moonwalk-threshold": 0.9,
-  "movement-factors": {
-    "basher": 0.5,
-    "digger": 0.2,
-    "faller": 1.0,
-    "umbrella": 0.5,
-    "walker": 1.0
+  "movement-controls": {
+    "basher": {
+      "scale-factor": 0.5
+    },
+    "digger": {
+      "scale-factor": 0.2
+    },
+    "faller": {
+      "scale-factor": 1.0
+    },
+    "pickaxe": {
+      "scale-factor": 1.0
+    },
+    "umbrella": {
+      "scale-factor": 0.5
+    },
+    "walker": {
+      "scale-factor": 1.0
+    }
   },
   "scale": {
     "max": 10,

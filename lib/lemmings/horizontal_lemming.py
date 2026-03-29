@@ -18,11 +18,10 @@ class HorizontalLemming(Lemming):
 
     def move(self):
         """Walk."""
-        increment = self.speed * self.scale * self.conf["movement-factors"][self.name]
         if self.flipped:
-            self.variable_position -= increment
+            self.variable_position -= self.movement_increment
         else:
-            self.variable_position += increment
+            self.variable_position += self.movement_increment
 
         self.update_x_y()
 

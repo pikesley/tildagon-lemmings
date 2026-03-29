@@ -10,7 +10,7 @@ lookups = {
     "[99, 0, 19]": "dt",
 }
 
-data = json.loads(Path("bitmaps/basher.json").read_text())
+data = json.loads(Path("bitmaps/pickaxe.json").read_text())
 
 colours = set()
 
@@ -25,6 +25,6 @@ for sprite in data:
 
 print(colours)
 
-Path("bitmaps", "basher-colours.json").write_text(
+Path("bitmaps", "pickaxe-colours.json").write_text(
     json.dumps(colourised), encoding="utf-8"
 )

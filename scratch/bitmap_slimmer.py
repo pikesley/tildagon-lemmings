@@ -6,7 +6,7 @@ frames = {}
 leading = 16
 trailing = 16
 
-for j in Path("bitmaps/basher").glob("*"):
+for j in Path("bitmaps/pickaxe").glob("*"):
     frames[int(j.stem)] = json.loads(j.read_text(encoding="utf-8"))
 
 
@@ -30,6 +30,8 @@ for data in frames.values():
             else:
                 r_counter += 1
 
+print(leading, trailing)
+
 slimmed = []
 for key in sorted(frames.keys()):
     slimmed.append([])
@@ -37,4 +39,4 @@ for key in sorted(frames.keys()):
         slimmed[-1].append(row[:])
         # slimmed[-1].append(row[leading:-trailing])
 
-Path("bitmaps/basher.json").write_text(json.dumps(slimmed))
+Path("bitmaps/pickaxe.json").write_text(json.dumps(slimmed))
