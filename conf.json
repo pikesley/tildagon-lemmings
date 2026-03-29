@@ -37,7 +37,11 @@
       "scale-factor": 0.5
     },
     "digger": {
-      "scale-factor": 0.2
+      "movement-frames": [
+        1,
+        9
+      ],
+      "scale-factor": 1
     },
     "faller": {
       "scale-factor": 1.0

@@ -27,7 +27,8 @@ movement-controls:
   umbrella:
     scale-factor: 0.5
   digger:
-    scale-factor: 0.2
+    scale-factor: 1
+    movement-frames: [1, 9]
   basher:
     scale-factor: 0.5
   pickaxe:
