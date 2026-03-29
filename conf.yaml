@@ -8,9 +8,6 @@ hue-increment: 0.005
 
 lemming-count: 3
 
-moonwalk-threshold: 0.9
-freak-threshold: 0.6
-
 thresholds:
   freak: 0.6
   moonwalk: 0.95
@@ -35,7 +32,7 @@ movement-controls:
     scale-factor: 0.5
   pickaxe:
     scale-factor: 1.0
-    movement-frames: [3, 15]
+    movement-frames: [3, 14]
   square:
     scale-factor: 1.0
 

@@ -13,10 +13,10 @@ from .lemmings.vertical_lemmings.faller import Faller
 from .lemmings.vertical_lemmings.umbrella import Umbrella
 
 freaks = [
-    Pickaxe,
     Basher,
     Digger,
     Faller,
+    Pickaxe,
     Umbrella,
 ]
 
@@ -44,15 +44,15 @@ class Colony:
                 "flipped": False,
                 "hue": self.hue,
                 "randomised-offset": False,
-                "speed": 0
+                "speed": 1,
             }
             lemming = lookups[self.debug](params)
             lemming.fixed_position = lemming.variable_position = 0
             lemming.update_x_y()
+            lemming.debug = True
             self.lemmings = [lemming]
         else:
             self.lemmings = [self.new_lemming() for i in range(self.count)]
-
 
     def new_lemming(self):
         """New little guy."""
@@ -71,7 +71,7 @@ class Colony:
             self.freak_token = 0
             params["freak"] = True
 
-        if lemming_class == Walker and random() > self.conf["thresholds"]["freak"]:
+        if lemming_class == Walker and random() > self.conf["thresholds"]["moonwalk"]:
             params["moonwalker"] = True
             params["hue"] = self.hue + 1 / 3
 

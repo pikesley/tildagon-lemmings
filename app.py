@@ -10,7 +10,9 @@ from .lib.background import Background
 from .lib.colony import Colony
 from .lib.conf import conf
 
-DEBUG="Pickaxe" # `None`, or a classname, e.g. "Pickaxe"
+# DEBUG = "Pickaxe"  # `None`, or a classname, e.g. "Pickaxe"
+DEBUG = None  # `None`, or a classname, e.g. "Pickaxe"
+
 
 class Lemmings(app.App):
     """Lemmings."""
@@ -40,16 +42,14 @@ class Lemmings(app.App):
 
     def draw(self, ctx):
         """Draw."""
-        ctx.rotate(self.rotation_monitor.read())
+        if not DEBUG:
+            ctx.rotate(self.rotation_monitor.read())
 
         self.overlays = []
         self.overlays.append(Background(colour=(0, 0, 0)))
 
         for lemming in self.colony.lemmings:
             self.overlays.extend(lemming.pixels)
-
-            if DEBUG:
-                print(f"frame_index: {lemming.frame_index}")
 
         self.draw_overlays(ctx)
 
@@ -59,7 +59,7 @@ class Lemmings(app.App):
             self.button_states.clear()
             self.minimise()
 
-        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
+        if self.button_states.get(BUTTON_TYPES["CONFIRM"]):
             self.button_states.clear()
             for lemming in self.colony.lemmings:
                 lemming.animate()

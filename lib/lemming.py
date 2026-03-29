@@ -34,6 +34,7 @@ class Lemming:
         if "name" in params:
             self.name = params["name"]
 
+        self.debug = False
         self.conf = conf
         self.params = dict(defaults, **params)
 
@@ -93,10 +94,12 @@ class Lemming:
     def animate(self):
         """Animate."""
         self.frame_index = (self.frame_index + 1) % len(self.frames)
+        if self.debug:
+            print(f"frame-index: {self.frame_index}")
 
     def move(self):
         """Move."""
-        if self.frame_index in self.movement_frames:
+        if self.debug or self.frame_index in self.movement_frames:
             self.move_one_step()
 
         self.update_x_y()
