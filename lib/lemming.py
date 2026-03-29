@@ -30,14 +30,7 @@ class Lemming:
 
     def __init__(self, params):
         """Construct."""
-        # this is clunky
-        self.subclass = self.__class__.__bases__[0].__name__
-
-        # this allows us to test the intermediate classes
-        if self.subclass == "Lemming":
-            self.subclass = self.__class__.__name__
-
-        # this is also purely for testing, real subclasses set their name
+        # this is purely for testing, real subclasses set their name
         if "name" in params:
             self.name = params["name"]
 
@@ -49,27 +42,17 @@ class Lemming:
         self.scale = self.params["scale"]
         self.speed = self.params["speed"]
         self.moonwalker = self.params["moonwalker"]
+        self.opacity = 1
+        self.hue = self.params.get("hue", 1.0)
+        self.outfit = RotatingOutfit(self.hue)
 
         self.load_frames()
         self.frame_index = 0
 
-        self.configure()
-
     def configure(self):
         """Post-initialisation configuration."""
-        if self.subclass == "HorizontalLemming":
-            self.scaling_dimension = self.width
-        else:
-            self.scaling_dimension = self.height
-
-        self.opacity = 1
-
-        self.hue = self.params.get("hue", 1.0)
-
-        self.outfit = RotatingOutfit(self.hue)
-
         # our starting `y`` (for Horizontal) or `x` (for Vertical)
-        self.fixed_position = 0
+        self.set_fixed_position(0)
 
         # ensure the entire lemming fits on the screen
         self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
@@ -150,9 +133,4 @@ class Lemming:
     def calculate_start_variable_position(self):
         """Starting `variable_position`."""
         limit = sqrt(120**2 - self.fixed_position**2)
-
-        position = -limit - (self.scaling_dimension * self.scale)
-        if self.flipped and self.subclass == "HorizontalLemming":
-            position = limit + (self.scaling_dimension * self.scale)
-
-        return round(position)
+        return round(-limit - (self.scaling_dimension * self.scale))

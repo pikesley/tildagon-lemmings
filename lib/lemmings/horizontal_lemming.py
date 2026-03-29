@@ -8,6 +8,9 @@ class HorizontalLemming(Lemming):
         """Construct."""
         super().__init__(params)
 
+        self.scaling_dimension = self.width
+        self.configure()
+
         self.x = self.variable_position
         self.y = self.fixed_position
 
@@ -26,3 +29,11 @@ class HorizontalLemming(Lemming):
         """Set our `fixed_position`."""
         super().set_fixed_position(value)
         self.x = self.variable_position
+
+    def calculate_start_variable_position(self):
+        """Starting `variable_position`."""
+        position = super().calculate_start_variable_position()
+        if self.flipped:
+            position = -position
+
+        return position

@@ -8,6 +8,9 @@ class VerticalLemming(Lemming):
         """Construct."""
         super().__init__(params)
 
+        self.scaling_dimension = self.height
+        self.configure()
+
         self.x = self.fixed_position
         self.y = self.variable_position
 
