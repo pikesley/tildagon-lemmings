@@ -64,6 +64,8 @@ class Lemming:
         self.variable_position = self.calculate_start_variable_position()
         self.final_variable_position = 0 - self.variable_position
 
+        self.update_x_y()
+
     def load_frames(self):
         """Load frames."""
         source = "regular"

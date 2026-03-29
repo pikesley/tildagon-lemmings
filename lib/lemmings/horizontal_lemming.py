@@ -11,8 +11,10 @@ class HorizontalLemming(Lemming):
         self.scaling_dimension = self.width
         self.configure()
 
-        self.x = self.variable_position
+    def update_x_y(self):
+        """Update `x` and `y` (mostly for `draw()` purposes)."""
         self.y = self.fixed_position
+        self.x = self.variable_position
 
     def move(self):
         """Walk."""
@@ -22,8 +24,7 @@ class HorizontalLemming(Lemming):
         else:
             self.variable_position += increment
 
-        self.x = self.variable_position
-        self.y = self.fixed_position
+        self.update_x_y()
 
     def set_fixed_position(self, value):
         """Set our `fixed_position`."""

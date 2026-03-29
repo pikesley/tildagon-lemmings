@@ -11,6 +11,8 @@ class VerticalLemming(Lemming):
         self.scaling_dimension = self.height
         self.configure()
 
+    def update_x_y(self):
+        """Update `x` and `y` (mostly for `draw()` purposes)."""
         self.x = self.fixed_position
         self.y = self.variable_position
 
@@ -18,9 +20,7 @@ class VerticalLemming(Lemming):
         """Dig."""
         increment = self.speed * self.scale * self.conf["movement-factors"][self.name]
         self.variable_position += increment
-
-        self.x = self.fixed_position
-        self.y = self.variable_position
+        self.update_x_y()
 
     def set_fixed_position(self, value):
         """Set our `fixed_position` (`x`)."""
