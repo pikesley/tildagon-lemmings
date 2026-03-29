@@ -39,7 +39,7 @@ class LEDManager:
         else:
             brightnesses = tail_intensities(len(self.orderings[surface]), shape, factor)
 
-        return tuple(zip(order, brightnesses))  # noqa: B905
+        return tuple(zip(order, brightnesses))
 
 
 def tail_intensities(count, shape, factor=1.0):  # noqa: RET503

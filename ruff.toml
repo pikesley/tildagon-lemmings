@@ -17,7 +17,8 @@ lint.ignore = [
   "PTH208",
   "PTH123",
   "SIM115",
-  "FBT002"
+  "FBT002",
+  "B905"
 ]
 lint.select = [
   "A", # flake8-builtins

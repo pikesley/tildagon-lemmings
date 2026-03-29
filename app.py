@@ -10,6 +10,7 @@ from .lib.background import Background
 from .lib.colony import Colony
 from .lib.conf import conf
 
+DEBUG="Pickaxe" # `None`, or a classname, e.g. "Pickaxe"
 
 class Lemmings(app.App):
     """Lemmings."""
@@ -21,7 +22,7 @@ class Lemmings(app.App):
         self.index = 0
 
         self.hue = 1 / 3
-        self.colony = Colony(self.hue, conf)
+        self.colony = Colony(self.hue, conf, debug=DEBUG)
 
         self.rotation_monitor = RotationMonitor()
         self.leds = LEDLighter(conf["led-brightness"])
@@ -46,6 +47,10 @@ class Lemmings(app.App):
 
         for lemming in self.colony.lemmings:
             self.overlays.extend(lemming.pixels)
+
+            if DEBUG:
+                print(f"frame_index: {lemming.frame_index}")
+
         self.draw_overlays(ctx)
 
     def scan_buttons(self):
@@ -53,6 +58,16 @@ class Lemmings(app.App):
         if self.button_states.get(BUTTON_TYPES["CANCEL"]):
             self.button_states.clear()
             self.minimise()
+
+        if self.button_states.get(BUTTON_TYPES["RIGHT"]):
+            self.button_states.clear()
+            for lemming in self.colony.lemmings:
+                lemming.animate()
+
+        if self.button_states.get(BUTTON_TYPES["LEFT"]):
+            self.button_states.clear()
+            for lemming in self.colony.lemmings:
+                lemming.move()
 
 
 __app_export__ = Lemmings

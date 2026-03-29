@@ -24,8 +24,9 @@ freaks = [
 class Colony:
     """A group of lemmings."""
 
-    def __init__(self, hue, conf):
+    def __init__(self, hue, conf, debug=None):
         """Construct."""
+        self.debug = debug
         self.hue = hue
         self.conf = conf
         self.count = conf["lemming-count"]
@@ -35,7 +36,23 @@ class Colony:
         self.scale_values = set(
             range(self.conf["scale"]["min"], self.conf["scale"]["max"] + 1)
         )
-        self.lemmings = [self.new_lemming() for i in range(self.count)]
+
+        if self.debug:
+            lookups = dict(zip([x.__name__ for x in freaks], freaks))
+            params = {
+                "scale": 8,
+                "flipped": False,
+                "hue": self.hue,
+                "randomised-offset": False,
+                "speed": 0
+            }
+            lemming = lookups[self.debug](params)
+            lemming.fixed_position = lemming.variable_position = 0
+            lemming.update_x_y()
+            self.lemmings = [lemming]
+        else:
+            self.lemmings = [self.new_lemming() for i in range(self.count)]
+
 
     def new_lemming(self):
         """New little guy."""
@@ -67,22 +84,24 @@ class Colony:
 
     def mobilise(self):
         """Move our lemmings."""
-        for lemming in self.lemmings:
-            lemming.animate()
-            lemming.move()
+        if not self.debug:
+            for lemming in self.lemmings:
+                lemming.animate()
+                lemming.move()
 
     def maintain(self):
         """Ensure we have a full contingent."""
-        fresh_lemmings = []
-        for lemming in self.lemmings:
-            if not lemming.done:
-                fresh_lemmings.append(lemming)
-            else:
-                self.scale_values.add(lemming.scale)
-                if "freak" in lemming.params:
-                    self.freak_token = 1
+        if not self.debug:
+            fresh_lemmings = []
+            for lemming in self.lemmings:
+                if not lemming.done:
+                    fresh_lemmings.append(lemming)
+                else:
+                    self.scale_values.add(lemming.scale)
+                    if "freak" in lemming.params:
+                        self.freak_token = 1
 
-        for _ in range(self.count - len(fresh_lemmings)):
-            fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
+            for _ in range(self.count - len(fresh_lemmings)):
+                fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
 
-        self.lemmings = sorted(fresh_lemmings)
+            self.lemmings = sorted(fresh_lemmings)
