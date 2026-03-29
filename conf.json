@@ -34,14 +34,26 @@
   },
   "movement-controls": {
     "basher": {
-      "scale-factor": 0.5
+      "movement-frames": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "scale-factor": 1.0
     },
     "digger": {
       "movement-frames": [
         1,
         9
       ],
-      "scale-factor": 1
+      "scale-factor": 1.0
     },
     "faller": {
       "scale-factor": 1.0

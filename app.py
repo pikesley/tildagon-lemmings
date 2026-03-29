@@ -10,7 +10,6 @@ from .lib.background import Background
 from .lib.colony import Colony
 from .lib.conf import conf
 
-# DEBUG = "Pickaxe"  # `None`, or a classname, e.g. "Pickaxe"
 DEBUG = None  # `None`, or a classname, e.g. "Pickaxe"
 
 

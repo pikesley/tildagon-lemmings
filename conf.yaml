@@ -27,16 +27,16 @@ movement-controls:
   umbrella:
     scale-factor: 0.5
   digger:
-    scale-factor: 1
+    scale-factor: 1.0
     movement-frames: [1, 9]
   basher:
-    scale-factor: 0.5
+    scale-factor: 1.0
+    movement-frames: [11, 12, 13, 14, 15, 27, 28, 29, 30, 31]
   pickaxe:
     scale-factor: 1.0
     movement-frames: [3, 14]
   square:
     scale-factor: 1.0
-
 
 default-colours:
   hr: [0.0, 0.7019607843137254, 0.0]
