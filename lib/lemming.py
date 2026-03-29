@@ -56,6 +56,9 @@ class Lemming:
             * self.scale
             * self.conf["movement-controls"][self.name]["scale-factor"]
         )
+        self.movement_frames = self.conf["movement-controls"][self.name].get(
+            "movement-frames", list(range(len(self.frames)))
+        )
 
         # our starting `y` (for Horizontal) or `x` (for Vertical)
         self.set_fixed_position(0)
@@ -90,6 +93,13 @@ class Lemming:
     def animate(self):
         """Animate."""
         self.frame_index = (self.frame_index + 1) % len(self.frames)
+
+    def move(self):
+        """Move."""
+        if self.frame_index in self.movement_frames:
+            self.move_one_step()
+
+        self.update_x_y()
 
     @property
     def pixels(self):

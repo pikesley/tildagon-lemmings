@@ -16,11 +16,16 @@ class VerticalLemming(Lemming):
         self.x = self.fixed_position
         self.y = self.variable_position
 
-    def move(self):
-        """Dig."""
-        self.variable_position += self.movement_increment
+    # def move(self):
+    #     """Move."""
+    #     if self.frame_index in self.movement_frames:
+    #         self.variable_position += self.movement_increment
 
-        self.update_x_y()
+    #     self.update_x_y()
+
+    def move_one_step(self):
+        """One movement step."""
+        self.variable_position += self.movement_increment
 
     def set_fixed_position(self, value):
         """Set our `fixed_position` (`x`)."""

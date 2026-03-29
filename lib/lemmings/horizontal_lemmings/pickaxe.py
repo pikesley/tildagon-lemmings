@@ -9,17 +9,12 @@ class Pickaxe(HorizontalLemming):
         self.name = "pickaxe"
         super().__init__(params or {})
 
-    def move(self):
-        """Walk."""
-        increment = (
-            self.speed
-            * self.scale
-            * self.conf["movement-controls"][self.name]["scale-factor"]
-        )
-        if self.frame_index in [3, 15]:
-            if self.flipped:
-                self.variable_position -= increment
-            else:
-                self.variable_position += increment
+    # def move(self):
+    #     """Walk."""
+    #     if self.frame_index in [3, 15]:
+    #         if self.flipped:
+    #             self.variable_position -= self.movement_increment
+    #         else:
+    #             self.variable_position += self.movement_increment
 
-        self.update_x_y()
+    #     self.update_x_y()

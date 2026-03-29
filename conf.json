@@ -45,6 +45,13 @@
       "scale-factor": 1.0
     },
     "pickaxe": {
+      "movement-frames": [
+        3,
+        15
+      ],
+      "scale-factor": 1.0
+    },
+    "square": {
       "scale-factor": 1.0
     },
     "umbrella": {
