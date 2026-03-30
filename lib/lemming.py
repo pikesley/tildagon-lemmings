@@ -1,4 +1,6 @@
+import gzip
 import json
+import os
 from math import sqrt
 from random import randint
 
@@ -87,9 +89,16 @@ class Lemming:
         if self.flipped != self.moonwalker:
             source = "inverted"
 
-        self.frames = json.loads(
-            open(self.asset_path + f"bitmaps/{self.name}/{source}.json").read()
-        )
+        filepath = self.asset_path + f"bitmaps/{self.name}/{source}.json"
+
+        files = os.listdir(self.asset_path + f"bitmaps/{self.name}/")
+        # assume if we find a zip, they're all zipped
+        if files[0].endswith(".gz"):
+            self.frames = json.loads(
+                gzip.decompress(open(filepath + ".gz", "rb").read()).decode()
+            )
+        else:
+            self.frames = json.loads(open(filepath).read())
 
         self.width = len(self.frames[0][0])
         self.height = len(self.frames[0])

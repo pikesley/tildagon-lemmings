@@ -1,5 +1,3 @@
-import gc
-
 from events.input import BUTTON_TYPES, Buttons
 from system.eventbus import eventbus
 from system.patterndisplay.events import PatternDisable
@@ -41,8 +39,6 @@ class Lemmings(app.App):
         self.colony.hue = self.hue
         self.colony.mobilise()
         self.colony.maintain()
-
-        gc.collect()
 
     def draw(self, ctx):
         """Draw."""
