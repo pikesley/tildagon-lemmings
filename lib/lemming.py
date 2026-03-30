@@ -50,22 +50,25 @@ class Lemming:
         self.load_frames()
         self.frame_index = 0
 
+        self.dots = self.params["dots"]
+
     def configure(self):
         """Post-initialisation configuration."""
-        self.movement_increment = (
-            self.speed
-            * self.scale
-            * self.conf["movement-controls"][self.name]["scale-factor"]
+        self.movement_conf = self.conf["movement-controls"].get(self.name) or {}
+
+        self.scale_factor = self.movement_conf.get("scale-factor", 1.0)
+        self.steps_per_frame = self.movement_conf.get(
+            "steps-per-frame", [1] * len(self.frames)
         )
-        self.movement_frames = self.conf["movement-controls"][self.name].get(
-            "movement-frames", list(range(len(self.frames)))
-        )
+        self.movement_increment = self.speed * self.scale * self.scale_factor
 
         # our starting `y` (for Horizontal) or `x` (for Vertical)
         self.set_fixed_position(0)
 
         # ensure the entire lemming fits on the screen
-        self.fixed_position_limit = 120 - ((self.scaling_dimension / 2) * self.scale)
+        self.fixed_position_limit = abs(
+            120 - ((self.scaling_dimension / 2) * self.scale)
+        )
 
         if self.params["randomised-offset"]:
             self.randomise_offset()
@@ -97,13 +100,6 @@ class Lemming:
         if self.debug:
             print(f"frame-index: {self.frame_index}")
 
-    def move(self):
-        """Move."""
-        if self.debug or self.frame_index in self.movement_frames:
-            self.move_one_step()
-
-        self.update_x_y()
-
     @property
     def pixels(self):
         """Draw."""
@@ -116,6 +112,7 @@ class Lemming:
                 colour = self.outfit.get(item, (0, 0, 0))
                 if item == "bg":
                     opacity = 0
+
                 pix.append(
                     Pixel(
                         start_x + (j * self.scale),
@@ -123,6 +120,7 @@ class Lemming:
                         self.scale,
                         colour,
                         opacity,
+                        dot=self.dots,
                     )
                 )
 
@@ -147,9 +145,16 @@ class Lemming:
 
     def randomise_offset(self):
         """Set `fixed_position` to something random."""
-        self.set_fixed_position(
-            randint(int(-self.fixed_position_limit), int(self.fixed_position_limit))
-        )
+        # this might be fixed now we take abs(fixed_position_limit)
+        try:
+            offset = randint(
+                int(-self.fixed_position_limit), int(self.fixed_position_limit)
+            )
+        except ValueError:
+            offset = 0
+            print(self.fixed_position_limit)
+
+        self.set_fixed_position(offset)
 
     def calculate_start_variable_position(self):
         """Starting `variable_position`."""

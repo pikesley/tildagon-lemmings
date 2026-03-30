@@ -1,31 +1,23 @@
 {
+  "colour-offsets": {
+    "clothing": 0.333,
+    "dirt": 0.666,
+    "hair": 0,
+    "umbrella": 0.666
+  },
   "colour-value-factor": 0.8,
   "default-colours": {
-    "cl": [
-      0.37254901960784315,
-      0.38823529411764707,
-      1.0
-    ],
-    "hr": [
-      0.0,
-      0.7019607843137254,
-      0.0
-    ],
-    "sk": [
+    "skin": [
       1.0,
-      0.9215686274509803,
-      0.8745098039215686
-    ],
-    "um": [
-      1.0,
-      1.0,
-      0.0
+      0.92,
+      0.87
     ]
   },
   "hue-increment": 0.005,
   "led-brightness": 0.5,
   "lemming-count": 3,
   "lemming-defaults": {
+    "dots": false,
     "flipped": false,
     "moonwalker": false,
     "randomised-offset": false,
@@ -34,53 +26,122 @@
   },
   "movement-controls": {
     "basher": {
-      "movement-frames": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        27,
-        28,
-        29,
-        30,
-        31
-      ],
-      "scale-factor": 1.0
+      "steps-per-frame": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "bridger": {
+      "steps-per-frame": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
     },
     "digger": {
-      "movement-frames": [
+      "steps-per-frame": [
+        0,
         1,
-        9
-      ],
-      "scale-factor": 1.0
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
     },
-    "faller": {
-      "scale-factor": 1.0
-    },
+    "faller": null,
     "pickaxe": {
-      "movement-frames": [
-        3,
-        14
-      ],
-      "scale-factor": 1.0
+      "steps-per-frame": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
     },
-    "square": {
-      "scale-factor": 1.0
-    },
+    "square": null,
     "umbrella": {
       "scale-factor": 0.5
     },
-    "walker": {
-      "scale-factor": 1.0
-    }
+    "walker": null
   },
   "scale": {
-    "max": 10,
-    "min": 4
+    "max": 16,
+    "min": 2
   },
   "thresholds": {
-    "freak": 0.6,
+    "freak": 0.95,
     "moonwalk": 0.95
   }
 }

@@ -16,12 +16,17 @@ class HorizontalLemming(Lemming):
         self.y = self.fixed_position
         self.x = self.variable_position
 
-    def move_one_step(self):
-        """One movement step."""
+    def move(self):
+        """Move."""
         if self.flipped:
-            self.variable_position -= self.movement_increment
+            self.variable_position -= (
+                self.movement_increment * self.steps_per_frame[self.frame_index]
+            )
         else:
-            self.variable_position += self.movement_increment
+            self.variable_position += (
+                self.movement_increment * self.steps_per_frame[self.frame_index]
+            )
+        self.update_x_y()
 
     def set_fixed_position(self, value):
         """Set our `fixed_position`."""

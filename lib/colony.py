@@ -37,6 +37,8 @@ class Colony:
             range(self.conf["scale"]["min"], self.conf["scale"]["max"] + 1)
         )
 
+        self.dotted = False
+
         if self.debug:
             lookups = dict(zip([x.__name__ for x in freaks], freaks))
             params = {
@@ -64,6 +66,7 @@ class Colony:
             "flipped": choice([True, False]),
             "hue": self.hue,
             "randomised-offset": True,
+            "dots": self.dotted,
         }
         lemming_class = Walker
         if random() > self.conf["thresholds"]["freak"] and self.freak_token:
@@ -105,3 +108,9 @@ class Colony:
                 fresh_lemmings.append(self.new_lemming())  # noqa: PERF401
 
             self.lemmings = sorted(fresh_lemmings)
+
+    def dottify(self, dots):
+        """Set `dots`."""
+        for lemming in self.lemmings:
+            lemming.dots = dots
+        self.dotted = dots

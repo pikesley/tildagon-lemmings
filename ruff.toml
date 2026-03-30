@@ -14,11 +14,12 @@ lint.ignore = [
   "TID252", # it's all relative imports down here
   "D401", # the first line of my docstring will be in any mood I like
   "D400",  # we'll end with a question mark if we want to
-  "PTH208",
-  "PTH123",
-  "SIM115",
+  "PTH208", # we don't have pathlib down here
+  "PTH123", # we don't have `Path.open` in MicroPython
+  "SIM115", # Use a context manager for opening files. Well, no
+  "B905", # MicroPython `zip` does not have `strict=`
+  "FBT003", # We like boolean default positional arguments
   "FBT002",
-  "B905"
 ]
 lint.select = [
   "A", # flake8-builtins

@@ -34,7 +34,7 @@ clean:
 	@find . -depth -name .ruff_cache -exec rm -fr {} \;
 	@find . -depth -name .pytest_cache -exec rm -fr {} \;
 
-test:
+test: convert-conf
 	python -m pytest \
 		--random-order \
 		--verbose \

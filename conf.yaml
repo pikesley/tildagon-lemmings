@@ -1,15 +1,15 @@
+lemming-count: 3
+
 scale:
-  min: 4
-  max: 10
+  min: 2
+  max: 16
 
 led-brightness: 0.5
 colour-value-factor: 0.8 # darken screen colours this much
 hue-increment: 0.005
 
-lemming-count: 3
-
 thresholds:
-  freak: 0.6
+  freak: 0.95
   moonwalk: 0.95
 
 lemming-defaults:
@@ -18,28 +18,29 @@ lemming-defaults:
   flipped: false
   moonwalker: false
   randomised-offset: false
+  dots: false
 
 movement-controls:
-  walker:
-    scale-factor: 1.0
+  basher:
+    steps-per-frame: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+  bridger:
+    steps-per-frame: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+  digger:
+    steps-per-frame: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
   faller:
-    scale-factor: 1.0
+  pickaxe:
+    steps-per-frame: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0]
   umbrella:
     scale-factor: 0.5
-  digger:
-    scale-factor: 1.0
-    movement-frames: [1, 9]
-  basher:
-    scale-factor: 1.0
-    movement-frames: [11, 12, 13, 14, 15, 27, 28, 29, 30, 31]
-  pickaxe:
-    scale-factor: 1.0
-    movement-frames: [3, 14]
+  walker:
+
   square:
-    scale-factor: 1.0
 
 default-colours:
-  hr: [0.0, 0.7019607843137254, 0.0]
-  sk: [1.0, 0.9215686274509803, 0.8745098039215686]
-  cl: [0.37254901960784315, 0.38823529411764707, 1.0]
-  um: [1.0, 1.0, 0.0]
+  skin: [1.0, 0.92, 0.87]
+
+colour-offsets:
+  hair: 0
+  clothing: 0.333
+  umbrella: 0.666
+  dirt: 0.666

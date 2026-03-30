@@ -18,11 +18,11 @@ class RotatingOutfit:
     def __init__(self, hue):
         """Construct."""
         self.data = {
-            "sk": conf["default-colours"]["sk"],
-            "hr": rgb_from_hue(hue),
-            "cl": rgb_from_hue(hue + 1 / 3),
-            "um": rgb_from_hue(hue + 2 / 3),
-            "dt": rgb_from_hue(hue + 2 / 3),
+            "sk": conf["default-colours"]["skin"],  # skin
+            "hr": rgb_from_hue(hue + conf["colour-offsets"]["hair"]),
+            "cl": rgb_from_hue(hue + conf["colour-offsets"]["clothing"]),
+            "um": rgb_from_hue(hue + conf["colour-offsets"]["umbrella"]),
+            "dt": rgb_from_hue(hue + conf["colour-offsets"]["dirt"]),
         }
 
     def __getitem__(self, key):

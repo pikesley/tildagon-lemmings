@@ -35,6 +35,6 @@ for key, pixels in sprites.items():
             gzip.compress(json.dumps(pixels).encode("utf-8"))
         )
     else:
-        Path(root_path, f"{key + 12}.json").write_text(
+        Path(root_path, f"{key}.json").write_text(
             json.dumps(pixels, indent=2), encoding="utf-8"
         )
