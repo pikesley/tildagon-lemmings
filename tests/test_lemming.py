@@ -7,15 +7,10 @@ def test_lemming():
     """Test."""
     lem = Lemming(test_defaults)
     lem.name = "square"
+
     assert lem.frames == [
-        [
-            ["hr", "bg"],
-            ["hr", "bg"],
-        ],
-        [
-            ["hr", "bg"],
-            ["hr", "bg"],
-        ],
+        [["hr", 1, 1, 0], ["hr", 1, 1, 1]],
+        [["hr", 1, 1, 0], ["hr", 1, 1, 1]],
     ]
 
 
@@ -27,4 +22,4 @@ def test_positioning():
     lem.y = 0
 
     assert lem.pixels[0].top == -4
-    assert lem.pixels[0].left == -4
+    assert lem.pixels[0].left == -0

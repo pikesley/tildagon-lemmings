@@ -40,22 +40,22 @@ def test_moonwalker():
     l_r_lem = HorizontalLemming(params)
     assert l_r_lem.x == -128
     assert l_r_lem.pixels[0].colour[-1] == 1
-    assert l_r_lem.pixels[1].colour[-1] == 0
+    assert l_r_lem.pixels[1].colour[-1] == 1
 
     params = dict(test_defaults, flipped=True)
     r_l_lem = HorizontalLemming(params)
     assert r_l_lem.x == 128
-    assert r_l_lem.pixels[0].colour[-1] == 0
+    assert r_l_lem.pixels[0].colour[-1] == 1
     assert r_l_lem.pixels[1].colour[-1] == 1
 
     params = dict(test_defaults, moonwalker=True)
     l_r_moonwalker = HorizontalLemming(params)
     assert l_r_moonwalker.x == -128
-    assert l_r_moonwalker.pixels[0].colour[-1] == 0
+    assert l_r_moonwalker.pixels[0].colour[-1] == 1
     assert l_r_moonwalker.pixels[1].colour[-1] == 1
 
     params = dict(test_defaults, flipped=True, moonwalker=True)
     r_l_moonwalker = HorizontalLemming(params)
     assert r_l_moonwalker.x == 128
     assert r_l_moonwalker.pixels[0].colour[-1] == 1
-    assert r_l_moonwalker.pixels[1].colour[-1] == 0
+    assert r_l_moonwalker.pixels[1].colour[-1] == 1

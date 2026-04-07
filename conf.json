@@ -15,7 +15,7 @@
   },
   "hue-increment": 0.005,
   "led-brightness": 0.5,
-  "lemming-count": 3,
+  "lemming-count": 6,
   "lemming-defaults": {
     "dots": false,
     "flipped": false,
@@ -24,8 +24,9 @@
     "scale": 4,
     "speed": 1
   },
-  "movement-controls": {
+  "lemmings": {
     "basher": {
+      "height": 9,
       "steps-per-frame": [
         0,
         0,
@@ -59,29 +60,11 @@
         1,
         1,
         1
-      ]
-    },
-    "bridger": {
-      "steps-per-frame": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ]
+      ],
+      "width": 16
     },
     "digger": {
+      "height": 13,
       "steps-per-frame": [
         0,
         1,
@@ -99,10 +82,15 @@
         0,
         0,
         0
-      ]
+      ],
+      "width": 16
     },
-    "faller": null,
+    "faller": {
+      "height": 10,
+      "width": 6
+    },
     "pickaxe": {
+      "height": 13,
       "steps-per-frame": [
         0,
         0,
@@ -128,20 +116,29 @@
         0,
         0,
         0
-      ]
+      ],
+      "width": 15
     },
-    "square": null,
+    "square": {
+      "height": 2,
+      "width": 2
+    },
     "umbrella": {
-      "scale-factor": 0.5
+      "height": 15,
+      "scale-factor": 0.5,
+      "width": 9
     },
-    "walker": null
+    "walker": {
+      "height": 10,
+      "width": 6
+    }
   },
   "scale": {
     "max": 16,
     "min": 2
   },
   "thresholds": {
-    "freak": 0.95,
+    "freak": 0.9,
     "moonwalk": 0.95
   }
 }

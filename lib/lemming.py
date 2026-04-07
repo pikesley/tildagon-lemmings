@@ -1,6 +1,5 @@
 import gzip
 import json
-import os
 from math import sqrt
 from random import randint
 
@@ -37,7 +36,10 @@ class Lemming:
             self.name = params["name"]
 
         self.debug = False
-        self.conf = conf
+        self.conf = conf["lemmings"][self.name]
+        self.width = self.conf["width"]
+        self.height = self.conf["height"]
+
         self.params = dict(defaults, **params)
 
         self.flipped = self.params["flipped"]
@@ -56,12 +58,8 @@ class Lemming:
 
     def configure(self):
         """Post-initialisation configuration."""
-        self.movement_conf = self.conf["movement-controls"].get(self.name) or {}
-
-        self.scale_factor = self.movement_conf.get("scale-factor", 1.0)
-        self.steps_per_frame = self.movement_conf.get(
-            "steps-per-frame", [1] * len(self.frames)
-        )
+        self.scale_factor = self.conf.get("scale-factor", 1.0)
+        self.steps_per_frame = self.conf.get("steps-per-frame", [1] * len(self.frames))
         self.movement_increment = self.speed * self.scale * self.scale_factor
 
         # our starting `y` (for Horizontal) or `x` (for Vertical)
@@ -89,23 +87,18 @@ class Lemming:
         if self.flipped != self.moonwalker:
             source = "inverted"
 
-        filepath = self.asset_path + f"bitmaps/{self.name}/{source}.json"
-
-        files = os.listdir(self.asset_path + f"bitmaps/{self.name}/")
-        # assume if we find a zip, they're all zipped
-        if files[0].endswith(".gz"):
+        filepath = self.asset_path + f"sources/encoded/{self.name}/{source}.json"
+        try:
             self.frames = json.loads(
                 gzip.decompress(open(filepath + ".gz", "rb").read()).decode()
             )
-        else:
+        except FileNotFoundError:
             self.frames = json.loads(open(filepath).read())
-
-        self.width = len(self.frames[0][0])
-        self.height = len(self.frames[0])
 
     def animate(self):
         """Animate."""
         self.frame_index = (self.frame_index + 1) % len(self.frames)
+
         if self.debug:
             print(f"frame-index: {self.frame_index}")
 
@@ -115,23 +108,22 @@ class Lemming:
         pix = []
         start_x = self.x - (self.width * self.scale / 2)
         start_y = self.y - (self.height * self.scale / 2)
-        for i, row in enumerate(self.frames[self.frame_index]):
-            for j, item in enumerate(row):
-                opacity = self.opacity
-                colour = self.outfit.get(item, (0, 0, 0))
-                if item == "bg":
-                    opacity = 0
+        for item in self.frames[self.frame_index]:
+            colour = self.outfit[item[0]] + [1]
+            left = item[1] * self.scale
+            width = item[2] * self.scale
+            top = item[3] * self.scale
+            height = self.scale
 
-                pix.append(
-                    Pixel(
-                        start_x + (j * self.scale),
-                        start_y + (i * self.scale),
-                        self.scale,
-                        colour,
-                        opacity,
-                        dot=self.dots,
-                    )
+            pix.append(
+                Pixel(
+                    start_x + left,
+                    width,
+                    start_y + top,
+                    height,
+                    colour,
                 )
+            )
 
         return pix
 

@@ -3,9 +3,8 @@ APP = $(shell basename $$(pwd))
 all: format test clean
 
 push: convert-conf slim-deploy
-	python -m mpremote cp -r bitmaps :/apps/${APP}/
+	python -m mpremote cp -r sources/encoded/* :/apps/${APP}/sources/encoded/
 	python -m mpremote cp -r common :/apps/${APP}/
-# 	python -m mpremote cp -r images :/apps/${APP}/
 	python -m mpremote cp -r conf.json :/apps/${APP}/
 	python -m mpremote cp -r metadata.json :/apps/${APP}/
 	python -m mpremote cp -r tildagon.toml :/apps/${APP}/
@@ -16,6 +15,8 @@ slim-deploy:
 
 mkdir:
 	-python -m mpremote mkdir apps/${APP}
+	-python -m mpremote mkdir apps/${APP}/sources
+	-python -m mpremote mkdir apps/${APP}/sources/encoded
 
 connect:
 	python -m mpremote
@@ -33,14 +34,27 @@ clean:
 	@find . -depth -name __pycache__ -exec rm -fr {} \;
 	@find . -depth -name .ruff_cache -exec rm -fr {} \;
 	@find . -depth -name .pytest_cache -exec rm -fr {} \;
+	@find . -depth -name .DS_Store -exec rm -fr {} \;
 
 test: convert-conf
 	python -m pytest \
-		--random-order \
 		--verbose \
 		--capture no \
 		--exitfirst \
 		--last-failed
+# 		--random-order \
+
+generate:
+	python tools/splitter.py
+	python tools/bitmapper.py
+	python tools/slimmer.py
+	python tools/encoder.py
+
+clean-sources:
+	rm -fr sources/bitmaps/
+	rm -fr sources/crops/
+	rm -fr sources/encoded/
+	rm -fr sources/slimmed_bitmaps/
 
 install: guard-LIBRARY
 	mkdir -p pikesley
