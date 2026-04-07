@@ -169,3 +169,14 @@ class Lemming:
         """Starting `variable_position`."""
         limit = sqrt(120**2 - self.fixed_position**2)
         return round(-limit - (self.scaling_dimension * self.scale))
+
+    def __repr__(self):
+        """Show ourself."""
+        return {
+            "class": self.__class__.__name__,
+            "limit": self.fixed_position_limit,
+            "offset": self.fixed_position,
+            "width": self.width,
+            "height": self.height,
+            "scale": self.scale,
+        }
