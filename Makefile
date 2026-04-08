@@ -38,11 +38,11 @@ clean:
 
 test: convert-conf
 	python -m pytest \
+		--random-order \
 		--verbose \
 		--capture no \
 		--exitfirst \
 		--last-failed
-# 		--random-order \
 
 generate:
 	python tools/splitter.py
